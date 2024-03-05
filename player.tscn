@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c50vxehsggxm0"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_5tu1j"]
+[ext_resource type="Texture2D" uid="uid://di5igw0e3pxb1" path="res://Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a.png" id="2_jdq50"]
+[ext_resource type="Texture2D" uid="uid://byqjm8h5202mc" path="res://Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a-dodge.png" id="3_e068y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxko2"]
+radius = 12.0
+height = 56.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uth14"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e068y")
+}],
+"loop": true,
+"name": &"dodge",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D"]
+position = Vector2(59, 97)
+script = ExtResource("1_5tu1j")
+
+[node name="Ship" type="Sprite2D" parent="."]
+
+[node name="P-blue-a" type="Sprite2D" parent="."]
+scale = Vector2(0.196289, 0.196289)
+texture = ExtResource("2_jdq50")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uxko2")
+
+[node name="DodgeCooldown" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.194824, 0.194824)
+sprite_frames = SubResource("SpriteFrames_uth14")
+animation = &"dodge"
