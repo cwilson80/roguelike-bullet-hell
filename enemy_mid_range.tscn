@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://qa58ublw1g87"]
+
+[ext_resource type="Script" path="res://enemy_mid_range.gd" id="1_pba18"]
+[ext_resource type="Texture2D" uid="uid://bwcplh6blbj06" path="res://Pixel Spaceships - Shoot'em Ups pack HD/AndromedaRangerCaptain.png" id="2_a107l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3v4n6"]
+radius = 35.0
+height = 70.0
+
+[node name="Enemy_Mid-Range" type="Area2D"]
+script = ExtResource("1_pba18")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AndromedaRangerCaptain" type="Sprite2D" parent="."]
+scale = Vector2(0.119141, 0.119141)
+texture = ExtResource("2_a107l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_3v4n6")

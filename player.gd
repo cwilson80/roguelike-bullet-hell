@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var screensize = get_viewport_rect().size
-@export var speed = 150
+@export var speed = 350
 
 func _process(delta):
 	var input = Input.get_vector("left", "right", "up", "down")

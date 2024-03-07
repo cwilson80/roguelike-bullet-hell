@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dua4bawx75iq7"]
+
+[ext_resource type="Texture2D" uid="uid://db0o3rwuv6pw2" path="res://Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper1.jpg" id="1_i7wol"]
+[ext_resource type="PackedScene" uid="uid://c50vxehsggxm0" path="res://player.tscn" id="2_hjp7x"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-252, 486)
+texture = ExtResource("1_i7wol")
+
+[node name="Player" parent="." instance=ExtResource("2_hjp7x")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
