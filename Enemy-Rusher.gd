@@ -1,15 +1,33 @@
 extends Area2D
 
 var start_pos = Vector2.ZERO
-var speed = 350
+var speed = 0
+var viewport_size = Vector2(720, 960)
 
-@onready var screensize  = get_viewport_rect().size
+#Used to signal when an enemy is killed
+signal died
 
-# Called when the node enters the scene tree for the first time.
+#Spawning was only happening in center of screen, adjust as needed
+var spawn_offset = 100  
+
 func _ready():
-	pass # Replace with function body.
+	#Spawn the enemy initially
+	start(Vector2(viewport_size.x / 2, -spawn_offset))
 
+#Spawn enemy above view area and move at random intervals
+func start(pos):
+	speed = 0
+	position = Vector2(pos.x, pos.y)
+	start_pos = pos
+	$MoveTimer.wait_time = randf_range(5, 20)
+	$MoveTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#Randomize speed
+func _on_move_timer_timeout():
+	speed = randf_range(75, 100)
+
+#Allows movement
 func _process(delta):
-	pass
+	position.y += speed * delta
+	if position.y > viewport_size.y + 32:
+		start(Vector2(start_pos.x, -spawn_offset))
