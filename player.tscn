@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c50vxehsggxm0"]
+[gd_scene load_steps=7 format=3 uid="uid://c50vxehsggxm0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5tu1j"]
 [ext_resource type="Texture2D" uid="uid://di5igw0e3pxb1" path="res://Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a.png" id="2_jdq50"]
+[ext_resource type="PackedScene" uid="uid://c546qh7asdv5v" path="res://bullet.tscn" id="2_n0i2m"]
 [ext_resource type="Texture2D" uid="uid://byqjm8h5202mc" path="res://Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a-dodge.png" id="3_e068y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxko2"]
@@ -27,6 +28,7 @@ animations = [{
 [node name="Player" type="Area2D"]
 position = Vector2(361, 903)
 script = ExtResource("1_5tu1j")
+bullet_scene = ExtResource("2_n0i2m")
 
 [node name="P-blue-a" type="Sprite2D" parent="."]
 scale = Vector2(0.196289, 0.196289)
@@ -42,3 +44,8 @@ visible = false
 scale = Vector2(0.194824, 0.194824)
 sprite_frames = SubResource("SpriteFrames_uth14")
 animation = &"dodge"
+
+[node name="GunCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]

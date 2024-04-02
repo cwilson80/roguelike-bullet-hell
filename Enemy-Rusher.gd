@@ -31,3 +31,12 @@ func _process(delta):
 	position.y += speed * delta
 	if position.y > viewport_size.y + 32:
 		start(Vector2(start_pos.x, -spawn_offset))
+
+
+func explode():
+	speed = 0
+	$AnimationPlayer.play("explode")
+	set_deferred("monitoring", false)
+	died.emit(5)
+	await $AnimationPlayer.animation_finished
+	queue_free()
