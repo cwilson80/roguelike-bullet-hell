@@ -4,19 +4,26 @@
 [ext_resource type="Texture2D" uid="uid://bwcplh6blbj06" path="res://Pixel Spaceships - Shoot'em Ups pack HD/AndromedaRangerCaptain.png" id="2_a107l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3v4n6"]
-radius = 35.0
-height = 70.0
+radius = 30.0
+height = 66.0
 
 [node name="Enemy_Mid-Range" type="Area2D"]
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_pba18")
-
-[node name="Timer" type="Timer" parent="."]
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="AndromedaRangerCaptain" type="Sprite2D" parent="."]
-scale = Vector2(0.119141, 0.119141)
+scale = Vector2(0.106689, 0.106689)
 texture = ExtResource("2_a107l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3v4n6")
+
+[node name="ShootCD" type="Timer" parent="."]
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]

@@ -35,8 +35,7 @@ func _process(delta):
 
 func explode():
 	speed = 0
-	$AnimationPlayer.play("explode")
+	#need to add a death animation
 	set_deferred("monitoring", false)
 	died.emit(5)
-	await $AnimationPlayer.animation_finished
 	queue_free()

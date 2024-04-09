@@ -1,7 +1,8 @@
 extends Node2D
 
-#Loads Enemy_Rusher for use
+#Loads enemies to use
 var enemy = preload("res://Enemy_Rusher.tscn")
+var enemyMid = preload("res://enemy_mid_range.tscn")
 var score = 0
 
 func _ready():
@@ -17,6 +18,13 @@ func spawn_enemies():
 			add_child(e)
 			e.start(pos)
 			e.died.connect(_on_enemy_died)
+	for x in range(3):
+		for y in range(1):
+			var em = enemyMid.instantiate()
+			var pos = Vector2(x * (48 + 24) + 72, -48 * 4 - 48 + y * 48)
+			add_child(em)
+			em.start(pos)
+			em.died.connect(_on_enemy_died)
 
 func _on_enemy_died(value):
 	score += value
