@@ -21,7 +21,7 @@ func _ready():
 
 func start():
 	position = Vector2(screensize.x/2, screensize.y - 64)
-	$GunCooldown.wait_time = cooldown
+	$Timers/ShootCooldown.wait_time = cooldown
 
 
 func shoot():
@@ -30,7 +30,7 @@ func shoot():
 		return
 	#if player can shoot, start cooldown and spawn projectile called bullet
 	can_shoot = false
-	$GunCooldown.start()
+	$Timers/ShootCooldown.start()
 	var bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(bullet)
 	bullet.start(position + Vector2(0, -48))

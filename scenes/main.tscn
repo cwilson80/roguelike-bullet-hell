@@ -76,3 +76,8 @@ texture = ExtResource("3_ox0f1")
 libraries = {
 "": SubResource("AnimationLibrary_ydmu2")
 }
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
