@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var health = 5
 @export var move_speed = 450
 @export var dash_speed = 1300
+@export var slow_speed = 200
 @export var bullet_speed = -1000
 
 @export var bullet_scene : PackedScene
@@ -16,7 +17,7 @@ var can_shoot = true
 var can_dash = true
 var dashing = false
 
-func _process(delta):
+func _process(delta):	
 	#Get inputted direction
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
@@ -33,6 +34,14 @@ func _process(delta):
 		$Timers/DashCooldown.wait_time = dash_cooldown
 		$Timers/DashCooldown.start()
 		velocity = direction * dash_speed
+	
+	if Input.is_action_pressed("slow") and not dashing:
+		$HitDetection/CollisionShape2D/ColorRect.visible = true
+		$"P-blue-a".modulate = Color(0.3, 0.3, 0.3, 1)
+		velocity = direction * slow_speed
+	elif Input.is_action_just_released("slow"):
+		$HitDetection/CollisionShape2D/ColorRect.visible = false
+		$"P-blue-a".modulate = Color(1, 1, 1, 1)
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
