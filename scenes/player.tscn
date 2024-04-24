@@ -67,7 +67,6 @@ shape = SubResource("RectangleShape2D_m7gyw")
 debug_color = Color(1, 0, 0, 0.454902)
 
 [node name="ColorRect" type="ColorRect" parent="HitDetection/CollisionShape2D"]
-visible = false
 offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
