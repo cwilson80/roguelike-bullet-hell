@@ -5,7 +5,7 @@ var speed = 120
 var viewport_size = Vector2(720, 960)
 
 #load bullet scene
-var bullet_scene = preload("res://enemy_bullet.tscn")
+var bullet_scene = preload("uid://qoddbhglyuap")
 
 #Used to signal when an enemy is killed
 signal died
