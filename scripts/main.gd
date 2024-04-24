@@ -1,8 +1,8 @@
 extends Node2D
 
 #Loads enemies to use
-var enemy = preload("res://Enemy_Rusher.tscn")
-var enemyMid = preload("res://enemy_mid_range.tscn")
+var enemy = preload("uid://dca31lgf1n6va")
+var enemyMid = preload("uid://qa58ublw1g87")
 var score = 0
 
 func _ready():

@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 @onready var screensize = get_viewport_rect().size
 @export var speed = 350
