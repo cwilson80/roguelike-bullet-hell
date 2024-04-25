@@ -28,13 +28,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wj8r"]
 size = Vector2(82, 69)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7gyw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymjff"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 32
 motion_mode = 1
 script = ExtResource("1_5tu1j")
-bullet_scene = ExtResource("2_n0i2m")
+projectile = ExtResource("2_n0i2m")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_uxko2")
@@ -63,7 +64,7 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
-shape = SubResource("RectangleShape2D_m7gyw")
+shape = SubResource("RectangleShape2D_ymjff")
 debug_color = Color(1, 0, 0, 0.454902)
 
 [node name="ColorRect" type="ColorRect" parent="HitDetection/CollisionShape2D"]
@@ -72,7 +73,7 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
-color = Color(1, 0, 0, 0.454902)
+color = Color(1, 0, 0, 1)
 
 [node name="Timers" type="Node" parent="."]
 
@@ -84,7 +85,11 @@ wait_time = 0.1
 
 [node name="DashCooldown" type="Timer" parent="Timers"]
 
+[node name="ConsumableTimer" type="Timer" parent="Timers"]
+
+[connection signal="body_entered" from="ConsumableDetection" to="." method="_on_consumable_detection_body_entered"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
 [connection signal="timeout" from="Timers/ShootCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Timers/DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timers/ConsumableTimer" to="." method="_on_consumable_timer_timeout"]
