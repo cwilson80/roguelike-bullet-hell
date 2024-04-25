@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var start_pos = Vector2.ZERO
-var speed = 120
+var speed = 100
 var viewport_size = Vector2(720, 960)
 
 #load bullet scene
@@ -21,6 +21,8 @@ func _ready():
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
+	$ShootCD.wait_time = 4
+	$ShootCD.start()
 
 #Allows movement
 func _process(delta):
@@ -31,16 +33,27 @@ func _process(delta):
 	# Check if the enemy is below the halfway point vertically
 	elif position.y > viewport_size.y / 2:
 		speed = 0
-		$ShootCD.start()
-
-#	if position.y > viewport_size.y + 32:
-#		start(Vector2(start_pos.x, -spawn_offset))
 
 
 func _on_shoot_cd_timeout():
 	var bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(bullet)
-	bullet.start(position)
+	bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+	
+	var angle_degrees = 80
+	var angle_radians = deg_to_rad(angle_degrees)
+	var right_side_bullet = bullet_scene.instantiate()
+	get_tree().root.add_child(right_side_bullet)
+	right_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians), sin(angle_radians)).normalized())	
+	
+	var angle_degrees_left = 100
+	var angle_radians_left = deg_to_rad(angle_degrees_left)
+	var left_side_bullet = bullet_scene.instantiate()
+	get_tree().root.add_child(left_side_bullet)
+	left_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians_left), sin(angle_radians_left)).normalized())
+
+
+	
 	$ShootCD.wait_time = 4
 	$ShootCD.start()
 

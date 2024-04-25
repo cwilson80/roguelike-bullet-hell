@@ -1,14 +1,16 @@
 extends Area2D
 
 @export var speed = 100
+var direction = Vector2(0, -1).normalized()  # Default direction (vertical)
 
 
-func start(pos):
+func start(pos, direction):
 	position = pos
+	self.direction = direction.normalized()
 
 
 func _process(delta):
-	position.y += speed * delta
+	position += speed * delta * direction
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
