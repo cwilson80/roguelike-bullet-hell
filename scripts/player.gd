@@ -17,7 +17,7 @@ var can_shoot = true
 var can_dash = true
 var dashing = false
 
-func _process(delta):	
+func _process(_delta):	
 	#Get inputted direction
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
