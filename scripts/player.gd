@@ -76,8 +76,8 @@ func _ready():
 
 func shoot():
 	can_shoot = false
-	if consumable_active:
-		$Timers/ShootCooldown.wait_time = clampi(shoot_cooldown - consumable_shoot_speed, 0.001, 9999)
+	if consumable_active: # Apply consumable bonus
+		$Timers/ShootCooldown.wait_time = clampf(shoot_cooldown - consumable_shoot_speed, 0.001, 9999)
 	else:
 		$Timers/ShootCooldown.wait_time = shoot_cooldown
 	$Timers/ShootCooldown.start()
