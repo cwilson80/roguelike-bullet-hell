@@ -1,7 +1,7 @@
-extends CharacterBody2D
+extends Area2D
 
 var start_pos = Vector2.ZERO
-var speed = 120
+var speed = 80
 var viewport_size = Vector2(720, 960)
 
 #load bullet scene
@@ -25,13 +25,13 @@ func start(pos):
 #Allows movement
 func _process(delta):
 	# Check if the enemy is above the halfway point vertically
-	if position.y < viewport_size.y / 2:
+	if position.y < viewport_size.y / 12:
 		position.y += speed * delta
 
 	# Check if the enemy is below the halfway point vertically
-	elif position.y > viewport_size.y / 2:
+	elif position.y > viewport_size.y / 12:
 		speed = 0
-		$ShootCD.start()
+		#$ShootCD.start()
 
 #	if position.y > viewport_size.y + 32:
 #		start(Vector2(start_pos.x, -spawn_offset))
@@ -50,8 +50,4 @@ func explode():
 	#need to add a death animation
 	set_deferred("monitoring", false)
 	died.emit(5)
-	queue_free()
-
-
-func _on_hit_detection_body_entered(body):
 	queue_free()

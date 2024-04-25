@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 var start_pos = Vector2.ZERO
 var speed = 0
@@ -38,4 +38,8 @@ func explode():
 	#need to add a death animation
 	set_deferred("monitoring", false)
 	died.emit(5)
+	queue_free()
+
+
+func _on_hit_detection_body_entered(body):
 	queue_free()
