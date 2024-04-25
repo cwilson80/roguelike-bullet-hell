@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dua4bawx75iq7"]
+[gd_scene load_steps=9 format=3 uid="uid://dua4bawx75iq7"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6yal3"]
 [ext_resource type="Texture2D" uid="uid://db0o3rwuv6pw2" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper1.jpg" id="2_vb1p0"]
 [ext_resource type="Texture2D" uid="uid://1mq8sm8v35fc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/space.png" id="3_ox0f1"]
 [ext_resource type="PackedScene" uid="uid://c50vxehsggxm0" path="res://scenes/player.tscn" id="4_oc87u"]
+[ext_resource type="FontFile" uid="uid://bsexefy3d25rn" path="res://fonts/nulshock bd.otf" id="5_a1q6m"]
 
 [sub_resource type="Animation" id="Animation_2xy8y"]
 length = 3.0
@@ -76,3 +77,36 @@ texture = ExtResource("3_ox0f1")
 libraries = {
 "": SubResource("AnimationLibrary_ydmu2")
 }
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(438, -2271)
+rotation = -1.5708
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+offset_left = 24.0
+offset_top = 1.0
+offset_right = 194.0
+offset_bottom = 165.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ScoreText" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_a1q6m")
+theme_override_font_sizes/font_size = 20
+text = "Score:"
+
+[node name="LevelText" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_a1q6m")
+theme_override_font_sizes/font_size = 20
+text = "Level"
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

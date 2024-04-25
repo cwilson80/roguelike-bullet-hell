@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c50vxehsggxm0"]
+[gd_scene load_steps=9 format=3 uid="uid://c50vxehsggxm0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5tu1j"]
 [ext_resource type="Texture2D" uid="uid://di5igw0e3pxb1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a.png" id="2_jdq50"]
@@ -25,20 +25,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(361, 903)
-collision_mask = 60
-script = ExtResource("1_5tu1j")
-bullet_scene = ExtResource("2_n0i2m")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wj8r"]
+size = Vector2(82, 69)
 
-[node name="P-blue-a" type="Sprite2D" parent="."]
-scale = Vector2(0.196289, 0.196289)
-texture = ExtResource("2_jdq50")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymjff"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 32
+motion_mode = 1
+script = ExtResource("1_5tu1j")
+projectile = ExtResource("2_n0i2m")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_uxko2")
-
-[node name="DodgeCooldown" type="Timer" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -46,7 +46,50 @@ scale = Vector2(0.194824, 0.194824)
 sprite_frames = SubResource("SpriteFrames_uth14")
 animation = &"dodge"
 
-[node name="GunCooldown" type="Timer" parent="."]
+[node name="P-blue-a" type="Sprite2D" parent="."]
+scale = Vector2(0.196289, 0.196289)
+texture = ExtResource("2_jdq50")
+
+[node name="ConsumableDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConsumableDetection"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_1wj8r")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="HitDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+shape = SubResource("RectangleShape2D_ymjff")
+debug_color = Color(1, 0, 0, 0.454902)
+
+[node name="ColorRect" type="ColorRect" parent="HitDetection/CollisionShape2D"]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ShootCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
-[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
+[node name="DashTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+
+[node name="DashCooldown" type="Timer" parent="Timers"]
+
+[node name="ConsumableTimer" type="Timer" parent="Timers"]
+
+[connection signal="body_entered" from="ConsumableDetection" to="." method="_on_consumable_detection_body_entered"]
+[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
+[connection signal="timeout" from="Timers/ShootCooldown" to="." method="_on_gun_cooldown_timeout"]
+[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Timers/DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="Timers/ConsumableTimer" to="." method="_on_consumable_timer_timeout"]

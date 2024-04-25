@@ -1,0 +1,132 @@
+[gd_scene load_steps=8 format=3 uid="uid://churl3dwj2y4m"]
+
+[ext_resource type="Script" path="res://scenes/start_menu.gd" id="1_ci1cn"]
+[ext_resource type="Texture2D" uid="uid://bdw2jrbkduofa" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper1d.jpg" id="1_ck8qj"]
+[ext_resource type="FontFile" uid="uid://bsexefy3d25rn" path="res://fonts/nulshock bd.otf" id="2_ytb58"]
+[ext_resource type="FontFile" uid="uid://dak3i8iwx8im1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/nulshock bd.otf" id="4_6atbq"]
+
+[sub_resource type="Animation" id="Animation_g3ym0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1024, 424)]
+}
+
+[sub_resource type="Animation" id="Animation_eqd61"]
+resource_name = "Slide"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-304, 524), Vector2(1024, 424), Vector2(-304, 524)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pe0vo"]
+_data = {
+"RESET": SubResource("Animation_g3ym0"),
+"Slide": SubResource("Animation_eqd61")
+}
+
+[node name="Start Menu" type="Node2D"]
+script = ExtResource("1_ci1cn")
+
+[node name="BackgroundStart" type="Sprite2D" parent="."]
+position = Vector2(1024, 424)
+texture = ExtResource("1_ck8qj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackgroundStart"]
+libraries = {
+"": SubResource("AnimationLibrary_pe0vo")
+}
+
+[node name="GameTitle" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 72.0
+offset_right = 650.0
+offset_bottom = 219.0
+theme_override_fonts/font = ExtResource("2_ytb58")
+theme_override_font_sizes/font_size = 35
+text = "Bullet Hell Game Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AboutInfo" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 240.0
+offset_right = 632.0
+offset_bottom = 632.0
+theme_override_fonts/font = ExtResource("2_ytb58")
+theme_override_font_sizes/font_size = 20
+text = "Designed by Connor Wilson, Chase Cassetty, and Jaxon Elwell as our CSC 275 final project. We hope you enjoy :)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="StartButton" type="Button" parent="Buttons"]
+offset_left = 144.0
+offset_top = 304.0
+offset_right = 552.0
+offset_bottom = 424.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_6atbq")
+theme_override_font_sizes/font_size = 30
+text = "Start Game
+"
+flat = true
+
+[node name="AboutButton" type="Button" parent="Buttons"]
+offset_left = 144.0
+offset_top = 456.0
+offset_right = 552.0
+offset_bottom = 552.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_6atbq")
+theme_override_font_sizes/font_size = 30
+text = "About"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+offset_left = 144.0
+offset_top = 600.0
+offset_right = 552.0
+offset_bottom = 688.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_6atbq")
+theme_override_font_sizes/font_size = 25
+text = "Quit Game"
+flat = true
+
+[node name="BackButton" type="Button" parent="Buttons"]
+offset_left = 144.0
+offset_top = 608.0
+offset_right = 552.0
+offset_bottom = 744.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_6atbq")
+theme_override_font_sizes/font_size = 25
+text = "Back
+"
+flat = true
+
+[connection signal="pressed" from="Buttons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Buttons/BackButton" to="." method="_on_back_button_pressed"]
