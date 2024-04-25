@@ -21,6 +21,8 @@ func _ready():
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
+	$ShootCD.wait_time = 1
+	$ShootCD.start()
 
 #Allows movement
 func _process(delta):
@@ -31,16 +33,19 @@ func _process(delta):
 	# Check if the enemy is below the halfway point vertically
 	elif position.y > viewport_size.y / 12:
 		speed = 0
-		#$ShootCD.start()
-
-#	if position.y > viewport_size.y + 32:
-#		start(Vector2(start_pos.x, -spawn_offset))
 
 
 func _on_shoot_cd_timeout():
 	var bullet = bullet_scene.instantiate()
+	bullet.speed = 600
 	get_tree().root.add_child(bullet)
-	bullet.start(position)
+	bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+	
+	var secondary_bullet = bullet_scene.instantiate()
+	secondary_bullet.speed = 500
+	get_tree().root.add_child(secondary_bullet)
+	secondary_bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+	
 	$ShootCD.wait_time = 4
 	$ShootCD.start()
 
