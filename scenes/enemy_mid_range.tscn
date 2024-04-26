@@ -17,6 +17,7 @@ scale = Vector2(0.7, 0.7)
 collision_layer = 4
 collision_mask = 34
 script = ExtResource("1_tcqnk")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.106689, 0.106689)
@@ -26,9 +27,6 @@ texture = ExtResource("2_1nphl")
 shape = SubResource("CapsuleShape2D_3v4n6")
 
 [node name="ShootCD" type="Timer" parent="."]
-one_shot = true
-
-[node name="MoveTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="HitDetection" type="Area2D" parent="."]

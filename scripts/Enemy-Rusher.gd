@@ -19,7 +19,7 @@ func start(pos):
 	speed = 0
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
-	$MoveTimer.wait_time = randf_range(5, 20)
+	$MoveTimer.wait_time = randf_range(1, 10)
 	$MoveTimer.start()
 
 #Randomize speed

@@ -16,6 +16,7 @@ var spawn_offset = 100
 func _ready():
 	#Spawn the enemy initially
 	start(Vector2(viewport_size.x / 2, -spawn_offset))
+	$AnimatedSprite2D.play("default")
 
 #Spawn enemy above view area and move at random intervals
 func start(pos):
@@ -26,13 +27,14 @@ func start(pos):
 
 #Allows movement
 func _process(delta):
-	# Check if the enemy is above the halfway point vertically
-	if position.y < viewport_size.y / 12:
-		position.y += speed * delta
-
-	# Check if the enemy is below the halfway point vertically
-	elif position.y > viewport_size.y / 12:
-		speed = 0
+	position.y += speed * delta
+	
+	if position.y > viewport_size.y / 12:
+		speed = 16
+	
+	if position.y > viewport_size.y + 32:
+		speed = 72
+		start(Vector2(start_pos.x, -spawn_offset))
 
 
 func _on_shoot_cd_timeout():
@@ -52,6 +54,8 @@ func _on_shoot_cd_timeout():
 
 func explode():
 	speed = 0
+	$AnimatedSprite2D.stop()
+	$death.play("default")
 	#need to add a death animation
 	set_deferred("monitoring", false)
 	died.emit(5)
