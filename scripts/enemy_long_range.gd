@@ -16,37 +16,46 @@ var spawn_offset = 100
 func _ready():
 	#Spawn the enemy initially
 	start(Vector2(viewport_size.x / 2, -spawn_offset))
+	$AnimatedSprite2D.play("default")
 
 #Spawn enemy above view area and move at random intervals
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
+	$ShootCD.wait_time = 1
+	$ShootCD.start()
 
 #Allows movement
 func _process(delta):
-	# Check if the enemy is above the halfway point vertically
-	if position.y < viewport_size.y / 12:
-		position.y += speed * delta
-
-	# Check if the enemy is below the halfway point vertically
-	elif position.y > viewport_size.y / 12:
-		speed = 0
-		#$ShootCD.start()
-
-#	if position.y > viewport_size.y + 32:
-#		start(Vector2(start_pos.x, -spawn_offset))
+	position.y += speed * delta
+	
+	if position.y > viewport_size.y / 12:
+		speed = 16
+	
+	if position.y > viewport_size.y + 32:
+		speed = 72
+		start(Vector2(start_pos.x, -spawn_offset))
 
 
 func _on_shoot_cd_timeout():
 	var bullet = bullet_scene.instantiate()
+	bullet.speed = 600
 	get_tree().root.add_child(bullet)
-	bullet.start(position)
+	bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+	
+	var secondary_bullet = bullet_scene.instantiate()
+	secondary_bullet.speed = 500
+	get_tree().root.add_child(secondary_bullet)
+	secondary_bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+	
 	$ShootCD.wait_time = 4
 	$ShootCD.start()
 
 
 func explode():
 	speed = 0
+	$AnimatedSprite2D.stop()
+	$death.play("default")
 	#need to add a death animation
 	set_deferred("monitoring", false)
 	died.emit(5)
