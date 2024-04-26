@@ -1,16 +1,16 @@
 extends StaticBody2D
 
-
+@export var speed = 200
 var alternate
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationTimer.start()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	position.y += speed * delta
 
 
 func _on_animation_timeout():
@@ -20,5 +20,7 @@ func _on_animation_timeout():
 	else:
 		modulate = Color(1, 1, 1, 1)
 		alternate = true
-	
-	$AnimationTimer.start()
+
+
+func _on_delete_timer_timeout():
+	queue_free()
