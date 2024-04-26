@@ -26,13 +26,14 @@ func start(pos):
 
 #Allows movement
 func _process(delta):
-	# Check if the enemy is above the halfway point vertically
-	if position.y < viewport_size.y / 2:
-		position.y += speed * delta
-
-	# Check if the enemy is below the halfway point vertically
-	elif position.y > viewport_size.y / 2:
-		speed = 0
+	position.y += speed * delta
+	
+	if position.y > viewport_size.y / 2:
+		speed = 20
+	
+	if position.y > viewport_size.y + 32:
+		speed = 90
+		start(Vector2(start_pos.x, -spawn_offset))
 
 
 func _on_shoot_cd_timeout():
