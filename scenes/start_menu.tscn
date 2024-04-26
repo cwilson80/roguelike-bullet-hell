@@ -43,21 +43,6 @@ _data = {
 "Slide": SubResource("Animation_eqd61")
 }
 
-[sub_resource type="Animation" id="Animation_keb8m"]
-resource_name = "TextCreateTitle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": ["AAAAAAAAAAA", "Bullet Hell Game Name"]
-}
-
 [sub_resource type="Animation" id="Animation_i0ixg"]
 length = 0.001
 tracks/0/type = "value"
@@ -73,10 +58,41 @@ tracks/0/keys = {
 "values": ["Bullet Hell Game Name"]
 }
 
+[sub_resource type="Animation" id="Animation_keb8m"]
+resource_name = "TextCreateTitle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["AAAAAAAAAAA", "Bullet Hell Game Name"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ofan"]
 _data = {
 "RESET": SubResource("Animation_i0ixg"),
 "TextCreateTitle": SubResource("Animation_keb8m")
+}
+
+[sub_resource type="Animation" id="Animation_2qhni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["AAAAAAAA
+"]
 }
 
 [sub_resource type="Animation" id="Animation_470vm"]
@@ -96,7 +112,13 @@ tracks/0/keys = {
 ", "START GAME"]
 }
 
-[sub_resource type="Animation" id="Animation_2qhni"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oqxfw"]
+_data = {
+"RESET": SubResource("Animation_2qhni"),
+"TextCreateStart": SubResource("Animation_470vm")
+}
+
+[sub_resource type="Animation" id="Animation_43ndg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -108,14 +130,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["AAAAAAAA
-"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oqxfw"]
-_data = {
-"RESET": SubResource("Animation_2qhni"),
-"TextCreateStart": SubResource("Animation_470vm")
+"values": ["AAAAA"]
 }
 
 [sub_resource type="Animation" id="Animation_qi4wm"]
@@ -134,7 +149,13 @@ tracks/0/keys = {
 "values": ["AAAAA", "ABOUT"]
 }
 
-[sub_resource type="Animation" id="Animation_43ndg"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a720x"]
+_data = {
+"RESET": SubResource("Animation_43ndg"),
+"TextCreateAbout": SubResource("Animation_qi4wm")
+}
+
+[sub_resource type="Animation" id="Animation_8lia8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -146,13 +167,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["AAAAA"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a720x"]
-_data = {
-"RESET": SubResource("Animation_43ndg"),
-"TextCreateAbout": SubResource("Animation_qi4wm")
+"values": ["AAAAAAAA"]
 }
 
 [sub_resource type="Animation" id="Animation_6xidm"]
@@ -169,21 +184,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": ["AAAAAAAA", "QUIT GAME"]
-}
-
-[sub_resource type="Animation" id="Animation_8lia8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["AAAAAAAA"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cd4oq"]

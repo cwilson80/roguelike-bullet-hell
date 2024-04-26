@@ -79,22 +79,6 @@ _data = {
 "TextCreateSub": SubResource("Animation_sevdq")
 }
 
-[sub_resource type="Animation" id="Animation_67arq"]
-resource_name = "TextCreateMain"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": ["AAAAAA", "shop"]
-}
-
 [sub_resource type="Animation" id="Animation_rpby2"]
 length = 0.001
 tracks/0/type = "value"
@@ -108,6 +92,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["AAAAAA"]
+}
+
+[sub_resource type="Animation" id="Animation_67arq"]
+resource_name = "TextCreateMain"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["AAAAAA", "shop"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pebfj"]
@@ -158,3 +158,23 @@ horizontal_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_pebfj")
 }
+
+[node name="ShopButtons" type="Node2D" parent="."]
+
+[node name="Item1" type="Button" parent="ShopButtons"]
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = -8.0
+
+[node name="Item2" type="Button" parent="ShopButtons"]
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 24.0
+offset_bottom = 32.0
+
+[node name="Item3" type="Button" parent="ShopButtons"]
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 24.0
