@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://g5k3fvdoi1i2"]
+[gd_scene load_steps=13 format=3 uid="uid://g5k3fvdoi1i2"]
 
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_qomta"]
 [ext_resource type="Texture2D" uid="uid://b2qjlukcwitm0" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper2.jpg" id="1_yltwu"]
 [ext_resource type="FontFile" uid="uid://dak3i8iwx8im1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/nulshock bd.otf" id="2_cgath"]
 
@@ -41,7 +42,82 @@ _data = {
 "RESET": SubResource("Animation_41ekf")
 }
 
+[sub_resource type="Animation" id="Animation_3wq25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Welcome to the"]
+}
+
+[sub_resource type="Animation" id="Animation_sevdq"]
+resource_name = "TextCreateSub"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["AAAAAA", "welcome to the"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vngdd"]
+_data = {
+"RESET": SubResource("Animation_3wq25"),
+"TextCreateSub": SubResource("Animation_sevdq")
+}
+
+[sub_resource type="Animation" id="Animation_67arq"]
+resource_name = "TextCreateMain"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["AAAAAA", "shop"]
+}
+
+[sub_resource type="Animation" id="Animation_rpby2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["AAAAAA"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pebfj"]
+_data = {
+"RESET": SubResource("Animation_rpby2"),
+"TextCreateMain": SubResource("Animation_67arq")
+}
+
 [node name="Shop" type="Node2D"]
+script = ExtResource("1_qomta")
 
 [node name="BackgroundShop" type="Sprite2D" parent="."]
 modulate = Color(0.666667, 0.666667, 0.666667, 1)
@@ -61,12 +137,24 @@ offset_bottom = 179.0
 theme_override_fonts/font = ExtResource("2_cgath")
 theme_override_font_sizes/font_size = 25
 text = "Welcome to the"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopTitle1"]
+libraries = {
+"": SubResource("AnimationLibrary_vngdd")
+}
 
 [node name="ShopTitle2" type="Label" parent="."]
-offset_left = 192.0
-offset_top = 184.0
-offset_right = 503.0
-offset_bottom = 308.0
+offset_left = 96.0
+offset_top = 192.0
+offset_right = 606.0
+offset_bottom = 316.0
 theme_override_fonts/font = ExtResource("2_cgath")
 theme_override_font_sizes/font_size = 90
-text = "SHOP"
+text = "AAAAAA"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopTitle2"]
+libraries = {
+"": SubResource("AnimationLibrary_pebfj")
+}
