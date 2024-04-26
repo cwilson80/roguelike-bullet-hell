@@ -1,7 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://dca31lgf1n6va"]
+[gd_scene load_steps=15 format=3 uid="uid://dca31lgf1n6va"]
 
 [ext_resource type="Script" path="res://scripts/Enemy-Rusher.gd" id="1_afyt1"]
 [ext_resource type="Texture2D" uid="uid://bxdbp25n26t0o" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/AndromedaRangerExplorer.png" id="2_ol4vn"]
+[ext_resource type="Texture2D" uid="uid://dferrwrve05lc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_1_scaled.png" id="3_5jpr0"]
+[ext_resource type="Texture2D" uid="uid://bkqjdaanvc3kd" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_2_scaled.png" id="4_v7cgf"]
+[ext_resource type="Texture2D" uid="uid://dd8ptbe7kfwl1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_3_scaled.png" id="5_m80f2"]
+[ext_resource type="Texture2D" uid="uid://0xpv30bplg3d" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_4_scaled.png" id="6_acoxx"]
+[ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="7_0bv4i"]
+[ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="8_ju2jn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5k1ip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5jpr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7cgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m80f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_acoxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0bv4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ju2jn")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ol4vn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc6v8"]
 size = Vector2(53, 31)
@@ -22,17 +62,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbpq"]
 size = Vector2(53, 31)
 
-[node name="Enemy_Rusher" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Enemy_Rusher" type="Area2D" groups=["enemies"]]
 position = Vector2(0, -274)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 34
 script = ExtResource("1_afyt1")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.113281, 0.113281)
-texture = ExtResource("2_ol4vn")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_5k1ip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)

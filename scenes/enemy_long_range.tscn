@@ -1,21 +1,40 @@
 [gd_scene load_steps=13 format=3 uid="uid://bks0um2h5y0ky"]
 
 [ext_resource type="Script" path="res://scripts/enemy_long_range.gd" id="1_fnhk5"]
+[ext_resource type="Texture2D" uid="uid://dferrwrve05lc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_1_scaled.png" id="2_dbcgs"]
+[ext_resource type="Texture2D" uid="uid://bkqjdaanvc3kd" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_2_scaled.png" id="3_g6fki"]
 [ext_resource type="Texture2D" uid="uid://hpdpi64ubsba" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/enemy long range/AndromedaRanger1.png" id="3_vgutx"]
+[ext_resource type="Texture2D" uid="uid://dd8ptbe7kfwl1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_3_scaled.png" id="4_7tv1c"]
 [ext_resource type="Texture2D" uid="uid://bcvr7vrnshjiu" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/enemy long range/AndromedaRanger2.png" id="4_bu2ev"]
-[ext_resource type="Texture2D" uid="uid://b6g4xlds0oxnu" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 1.png" id="5_lwnqh"]
-[ext_resource type="Texture2D" uid="uid://torggw4q01el" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 2.png" id="6_bfi00"]
-[ext_resource type="Texture2D" uid="uid://wc8iqf6d7war" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 3.png" id="7_r8lh5"]
-[ext_resource type="Texture2D" uid="uid://cvctmuwyrfsur" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 4.png" id="8_ivgij"]
-[ext_resource type="Texture2D" uid="uid://c10ospru170lb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 5.png" id="9_5q04k"]
-[ext_resource type="Texture2D" uid="uid://b0is2es0ukpqd" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/explosion 6.png" id="10_72b8x"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8h70h"]
-radius = 175.0
-height = 533.333
+[ext_resource type="Texture2D" uid="uid://0xpv30bplg3d" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_4_scaled.png" id="5_icw5d"]
+[ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="6_a6weg"]
+[ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="7_44kuo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m8wn7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dbcgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g6fki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7tv1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_icw5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a6weg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_44kuo")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_vgutx")
@@ -28,53 +47,39 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7gt5a"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_lwnqh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_bfi00")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_r8lh5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_ivgij")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_5q04k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_72b8x")
-}],
-"loop": false,
-"name": &"default",
-"speed": 6.0
-}]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8h70h"]
+radius = 175.0
+height = 533.333
 
-[node name="enemy_long_range" type="Area2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t6cko"]
+radius = 191.667
+height = 550.0
+
+[node name="enemy_long_range" type="Area2D" groups=["enemies"]]
 scale = Vector2(0.12, 0.12)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 34
 script = ExtResource("1_fnhk5")
 metadata/_edit_group_ = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_m8wn7")
+animation = &"death"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_8h70h")
 
 [node name="ShootCD" type="Timer" parent="."]
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 3.14159
-sprite_frames = SubResource("SpriteFrames_m8wn7")
+[node name="HitDetection" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
-[node name="death" type="AnimatedSprite2D" parent="."]
-scale = Vector2(10, 10)
-sprite_frames = SubResource("SpriteFrames_7gt5a")
-frame = 5
-frame_progress = 1.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+shape = SubResource("CapsuleShape2D_t6cko")
 
 [connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
+[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
