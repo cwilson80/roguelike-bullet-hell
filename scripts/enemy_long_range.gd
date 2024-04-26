@@ -1,5 +1,6 @@
 extends Area2D
 
+
 var start_pos = Vector2.ZERO
 var speed = 80
 var viewport_size = Vector2(720, 960)
@@ -7,16 +8,20 @@ var viewport_size = Vector2(720, 960)
 #load bullet scene
 var bullet_scene = preload("uid://qoddbhglyuap")
 
+
 #Used to signal when an enemy is killed
 signal died
 
+
 #Spawning was only happening in center of screen, adjust as needed
 var spawn_offset = 100  
+
 
 func _ready():
 	#Spawn the enemy initially
 	start(Vector2(viewport_size.x / 2, -spawn_offset))
 	$AnimatedSprite2D.play("default")
+
 
 #Spawn enemy above view area and move at random intervals
 func start(pos):
@@ -24,6 +29,7 @@ func start(pos):
 	start_pos = pos
 	$ShootCD.wait_time = 1
 	$ShootCD.start()
+
 
 #Allows movement
 func _process(delta):
@@ -54,9 +60,13 @@ func _on_shoot_cd_timeout():
 
 func explode():
 	speed = 0
-	$AnimatedSprite2D.stop()
-	$death.play("default")
-	#need to add a death animation
+	$AnimatedSprite2D.play("death")
 	set_deferred("monitoring", false)
 	died.emit(5)
+	await $AnimatedSprite2D.animation_finished
+	queue_free()
+
+
+func _on_hit_detection_body_entered(body):
+	explode()
 	queue_free()

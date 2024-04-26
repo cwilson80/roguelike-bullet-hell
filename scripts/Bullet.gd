@@ -15,6 +15,5 @@ func _on_area_entered(area):
 		area.explode()
 		queue_free() #removes the node safely to help save resources
 
-
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

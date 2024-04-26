@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 var start_pos = Vector2.ZERO
 var speed = 0
@@ -13,6 +13,7 @@ var spawn_offset = 100
 func _ready():
 	#Spawn the enemy initially
 	start(Vector2(viewport_size.x / 2, -spawn_offset))
+	$AnimatedSprite2D.play("default")
 
 #Spawn enemy above view area and move at random intervals
 func start(pos):
@@ -35,9 +36,10 @@ func _process(delta):
 
 func explode():
 	speed = 0
-	#need to add a death animation
+	$AnimatedSprite2D.play("death")
 	set_deferred("monitoring", false)
 	died.emit(5)
+	await $AnimatedSprite2D.animation_finished
 	queue_free()
 
 

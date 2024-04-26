@@ -25,7 +25,7 @@ func spawn_enemies():
 #spawns in 3 rows ^ of the current level of 4^current level of long range units
 func spawn_rusher():
 	for x in range(pow(4, current_level)):
-		for y in range(pow(3, current_level)):
+		for y in range(pow(3, snappedi(1, current_level*.1))):
 			var e = enemy.instantiate()
 			var random_x = randi() % (700) + 5  # Generate a random x within the specified range
 			var pos = Vector2(random_x, -48 * 4 - 48 + y * 48)
@@ -38,7 +38,7 @@ func spawn_rusher():
 #spawns in 2 rows ^ of the current level of 3^current level of long range units
 func spawn_mid():
 	for x in range(pow(3, current_level)):
-		for y in range(pow(2, current_level)):
+		for y in range(pow(2, snappedi(1, current_level*.1))):
 			var em = enemyMid.instantiate()
 			var random_x = randi() % (700) + 5  # Generate a random x within the specified range
 			var pos = Vector2(random_x, -48 * 4 - 48 + y * 48)
@@ -46,20 +46,18 @@ func spawn_mid():
 			em.start(pos)
 			em.died.connect(_on_enemy_died)
 
-var possible_x_values = [50, 100, 150, 200, 250, 300]
-var pos = Vector2(100, -48 * 4 - 48 + 0 * 48)
 
 #function for spawning long range enemies
-#spawns in 2 rows ^ of the current level of 2^current level of long range units
+#spawns in 2 rows ^ number of the current level of 2^1-.1*current level of long range units
 func spawn_long():
 	for x in range(pow(2, current_level)):
-		for y in range(pow(2, current_level)):
-			var em = enemyLong.instantiate()
+		for y in range(pow(2, snappedi(1, current_level*.1))):
+			var el = enemyLong.instantiate()
 			var random_x = randi() % (700) + 20  # Generate a random x within the specified range
 			var pos = Vector2(random_x, -48 * 4 - 48 + y * 48)
-			add_child(em)
-			em.start(pos)
-			em.died.connect(_on_enemy_died)
+			add_child(el)
+			el.start(pos)
+			el.died.connect(_on_enemy_died)
 
 
 func _on_enemy_died(value):
