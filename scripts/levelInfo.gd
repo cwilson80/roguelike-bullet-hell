@@ -42,15 +42,10 @@ func _deferred_goto_scene(path):
 #---------------------------------------------------------------------!
 func next_level():
 	level += 1
-	get_node("/root/Main/LevelTimer").start(60) # Restarts the level timer
+	get_node("/root/Main/LevelTimer").start() # Restarts the level timer
 
 func get_level():
 	return level
 
-# Switches between levels and the shop every minute, though this is subject to change
-# Right now, the player is taken to the shop every 3 levels
-func _on_level_timer_timeout(): 
-	if level % 3 == 0:
-		goto_scene("res://scenes/shop.tscn") # This scene does not exist yet
-	else:
-		next_level()
+
+
