@@ -4,7 +4,7 @@ extends Node2D
 var enemy = preload("res://scenes/enemy_rusher.tscn")
 var enemyMid = preload("res://scenes/enemy_mid_range.tscn")
 var enemyLong = preload("res://scenes/enemy_long_range.tscn")
-var current_level = 1
+var current_level = 0
 var score = 0
 
 func _ready():
@@ -13,8 +13,8 @@ func _ready():
 #sets the current level and increments for the next level
 func start():
 	current_level = levelInfo.level
-	levelInfo.level += 1
 	spawn_enemies()
+	$LevelTimer.start()
 
 func spawn_enemies():
 	spawn_rusher()
@@ -57,6 +57,24 @@ func spawn_long():
 
 func _on_enemy_died(value):
 	score += value
+
+# Levels the player up every minute, though this is subject to change
+# Right now, the player is taken to the shop every 3 levels
+func _on_level_timer_timeout():
+	levelInfo.level += 1
+	current_level = levelInfo.level
+	$CanvasLayer/LevelUpText.text = "Level Up! \nLevel " + str(current_level)
+	$CanvasLayer/LevelUpText.show()
+	$CanvasLayer/LevelUpText/AnimationPlayer.play("LevelUpFlash")
+	# This decides whether to go to the shop or not
+	if current_level % 3 == 0:
+		#goto_scene("res://scenes/shop.tscn") # This scene does not exist yet
+		get_tree().change_scene_to_file("res://scenes/shop.tscn")
+
+# This handles the visibility of the "Level Up" text
+# More specifically, it hides the text once the animation is done
+func _on_animation_player_animation_finished(LevelUpFlash):
+	$CanvasLayer/LevelUpText.hide()
 
 func _process(delta):
 	pass
