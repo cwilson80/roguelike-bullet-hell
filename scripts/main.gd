@@ -5,7 +5,7 @@ var enemy = preload("res://scenes/enemy_rusher.tscn")
 var enemyMid = preload("res://scenes/enemy_mid_range.tscn")
 var enemyLong = preload("res://scenes/enemy_long_range.tscn")
 var current_level = 0
-var score = 0
+var current_score = 0
 
 func _ready():
 	start()
@@ -61,13 +61,17 @@ func spawn_long():
 
 
 func _on_enemy_died(value):
-	score += value
+	levelInfo.score += value
+	current_score = levelInfo.score
+	$HUD/VBoxContainer/ScoreText.text = "Score: " + str(current_score)
+	
 
 # Levels the player up every minute, though this is subject to change
 # Right now, the player is taken to the shop every 3 levels
 func _on_level_timer_timeout():
 	levelInfo.level += 1
 	current_level = levelInfo.level
+	$HUD/VBoxContainer/LevelText.text = "Level " + str(current_level)
 	$CanvasLayer/LevelUpText.text = "Level Up! \nLevel " + str(current_level)
 	$CanvasLayer/LevelUpText.show()
 	$CanvasLayer/LevelUpText/AnimationPlayer.play("LevelUpFlash")
