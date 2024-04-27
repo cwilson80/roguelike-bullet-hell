@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://g5k3fvdoi1i2"]
+[gd_scene load_steps=26 format=3 uid="uid://g5k3fvdoi1i2"]
 
 [ext_resource type="Script" path="res://scripts/shop.gd" id="1_qomta"]
 [ext_resource type="Texture2D" uid="uid://b2qjlukcwitm0" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper2.jpg" id="1_yltwu"]
@@ -120,6 +120,117 @@ _data = {
 "TextCreateSub": SubResource("Animation_sevdq")
 }
 
+[sub_resource type="Animation" id="Animation_xi7wm"]
+resource_name = "NotEnough"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u0cyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vwvc"]
+_data = {
+"NotEnough": SubResource("Animation_xi7wm"),
+"RESET": SubResource("Animation_u0cyf")
+}
+
+[sub_resource type="Animation" id="Animation_ss5bw"]
+resource_name = "NotEnough"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w3glj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xs48"]
+_data = {
+"NotEnough": SubResource("Animation_ss5bw"),
+"RESET": SubResource("Animation_w3glj")
+}
+
+[sub_resource type="Animation" id="Animation_jyl5h"]
+resource_name = "NotEnough"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j4y4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_10s80"]
+_data = {
+"NotEnough": SubResource("Animation_jyl5h"),
+"RESET": SubResource("Animation_j4y4h")
+}
+
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_qomta")
 
@@ -158,10 +269,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="ScoreMultUp" type="Button" parent="ShopButtons"]
-offset_left = 492.0
-offset_top = 344.215
-offset_right = 684.0
-offset_bottom = 544.215
+offset_left = 490.665
+offset_top = 337.541
+offset_right = 682.665
+offset_bottom = 537.541
 focus_mode = 0
 icon = ExtResource("5_n63jw")
 flat = true
@@ -235,9 +346,9 @@ libraries = {
 }
 
 [node name="FireRateLabel" type="Label" parent="Labels"]
-offset_left = 50.1729
+offset_left = 34.622
 offset_top = 520.215
-offset_right = 191.173
+offset_right = 208.622
 offset_bottom = 573.215
 theme_override_fonts/font = ExtResource("3_tj8jr")
 theme_override_font_sizes/font_size = 20
@@ -245,6 +356,12 @@ text = "fire rate i
 500"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Labels/FireRateLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_4vwvc")
+}
 
 [node name="HealthLabel" type="Label" parent="Labels"]
 offset_left = 288.0
@@ -258,6 +375,11 @@ text = "health i
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Labels/HealthLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_8xs48")
+}
+
 [node name="ScoreMultLabel" type="Label" parent="Labels"]
 offset_left = 480.0
 offset_top = 504.215
@@ -270,6 +392,11 @@ text = "score multiplier i
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Labels/ScoreMultLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_10s80")
+}
 
 [connection signal="pressed" from="ShopButtons/FireRateUp" to="." method="_on_fire_rate_up_pressed"]
 [connection signal="pressed" from="ShopButtons/HealthUp" to="." method="_on_health_up_pressed"]

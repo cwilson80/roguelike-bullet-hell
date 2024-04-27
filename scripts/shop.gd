@@ -30,27 +30,78 @@ func _process(_delta):
 func _on_continue_pressed():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
-#TODO - Finish the other upgrade functions similar to the fire rate one, kinda ugly but it works
 
+# Switch cases and helper functions would work better here for scaling, but since there's
+# only 3 upgrades with 3 levels, it's faster to just do it this way
+
+# Score multiplier cost increases by 1000 every level
 func _on_score_mult_up_pressed():
-	pass # Replace with function body.
+	if(current_score_mult_cost <= current_score && current_score_mult_count < 3):
+		if(current_score_mult_count == 0):
+			levelInfo.score_mult_count += 1
+			levelInfo.score -= current_score_mult_cost
+			levelInfo.score_mult_cost = 3000
+			$Labels/ScoreMultLabel.text = "score multiplier ii \n3000"
+		elif(current_score_mult_count == 1):
+			levelInfo.score_mult_count += 1
+			levelInfo.score -= current_score_mult_cost
+			levelInfo.score_mult_cost = 4000
+			$Labels/ScoreMultLabel.text = "score multiplier iii \n4000"
+		else:
+			levelInfo.score_mult_count += 1
+			levelInfo.score -= current_score_mult_cost
+			$Labels/ScoreMultLabel.text = "MAX"
+		current_score_mult_count = levelInfo.score_mult_count
+	elif(current_score_mult_count != 3):
+		$Labels/ScoreMultLabel/AnimationPlayer.play("NotEnough")
+	current_score_mult_cost = levelInfo.score_mult_cost
+	current_score = levelInfo.score
+	$Labels/ScoreCounter.text = str(current_score)
 
-
+# Score multiplier cost increases by 750 every level
 func _on_health_up_pressed():
-	pass # Replace with function body.
+	if(current_health_cost <= current_score && current_health_count < 3):
+		if(current_health_count == 0):
+			levelInfo.health_count += 1
+			levelInfo.score -= current_health_cost
+			levelInfo.health_cost = 1750
+			$Labels/HealthLabel.text = "health ii \n1750"
+		elif(current_health_count == 1):
+			levelInfo.health_count += 1
+			levelInfo.score -= current_health_cost
+			levelInfo.health_cost = 2500
+			$Labels/HealthLabel.text = "health iii \n2500"
+		else:
+			levelInfo.health_count += 1
+			levelInfo.score -= current_health_cost
+			$Labels/HealthLabel.text = "MAX"
+		current_health_count = levelInfo.health_count
+	elif(current_health_count != 3):
+		$Labels/HealthLabel/AnimationPlayer.play("NotEnough")
+	current_health_cost = levelInfo.health_cost
+	current_score = levelInfo.score
+	$Labels/ScoreCounter.text = str(current_score)
 
-
+# Score multiplier cost increases by 500 every level
 func _on_fire_rate_up_pressed():
-	if(current_fire_rate_cost >= current_score):
+	if(current_fire_rate_cost <= current_score && current_fire_rate_count < 3):
 		if(current_fire_rate_count == 0):
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate_cost = 1000
+			$Labels/FireRateLabel.text = "fire rate ii \n1000"
 		elif(current_fire_rate_count == 1):
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate_cost = 1500
-		elif(current_fire_rate_count == 2):
+			$Labels/FireRateLabel.text = "fire rate iii \n1500"
+		else:
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
-			levelInfo.fire_rate_cost = 2000
+			$Labels/FireRateLabel.text = "MAX"
+		current_fire_rate_count = levelInfo.fire_rate_count
+	elif(current_fire_rate_count != 3):
+		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")
+	current_fire_rate_cost = levelInfo.fire_rate_cost
+	current_score = levelInfo.score
+	$Labels/ScoreCounter.text = str(current_score)
