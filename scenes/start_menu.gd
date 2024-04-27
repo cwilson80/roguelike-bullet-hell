@@ -4,6 +4,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$GameTitle/AnimationPlayer.play("TextCreateTitle")
+	$Buttons/StartButton/AnimationPlayer.play("TextCreateStart")
+	$Buttons/AboutButton/AnimationPlayer.play("TextCreateAbout")
+	$Buttons/QuitButton/AnimationPlayer.play("TextCreateQuit")
+	
 	$Buttons/BackButton.hide()
 	$AboutInfo.hide()
 	anim_player.play("Slide")
