@@ -110,7 +110,8 @@ func restart():
 	pass
 
 
-func _on_consumable_detection_body_entered(_body):
+func _on_consumable_detection_body_entered(body):
+	body.queue_free()
 	$Timers/ConsumableTimer.wait_time = consumable_time
 	$Timers/ConsumableTimer.start()
 	consumable_active = true

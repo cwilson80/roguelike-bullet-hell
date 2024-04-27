@@ -146,7 +146,7 @@ text = "Score:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_a1q6m")
 theme_override_font_sizes/font_size = 20
-text = "Level"
+text = "Level 1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

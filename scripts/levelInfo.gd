@@ -3,6 +3,9 @@ extends Node
 var level = 1
 var current_scene = null
 var score = 0
+var player_speed
+var bullet_speed
+var fire_rate
 
 func _ready():
 	var root = get_tree().root
