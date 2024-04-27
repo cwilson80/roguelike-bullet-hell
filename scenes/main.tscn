@@ -118,7 +118,6 @@ libraries = {
 }
 
 [node name="LevelTimer" type="Timer" parent="."]
-wait_time = 60.0
 
 [node name="Background2" type="Sprite2D" parent="."]
 position = Vector2(438, -2271)
@@ -146,7 +145,7 @@ text = "Score:"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_a1q6m")
 theme_override_font_sizes/font_size = 20
-text = "Level"
+text = "Level 1"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
