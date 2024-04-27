@@ -118,7 +118,6 @@ libraries = {
 }
 
 [node name="LevelTimer" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="Background2" type="Sprite2D" parent="."]
 position = Vector2(438, -2271)
