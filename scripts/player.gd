@@ -71,7 +71,7 @@ func _process(_delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# TODO: Implement a file that stores player stats to initialize them
-	pass
+	shoot_cooldown = levelInfo.fire_rate
 
 
 func shoot():
