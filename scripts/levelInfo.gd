@@ -4,8 +4,16 @@ var level = 1
 var current_scene = null
 var score = 0
 var player_speed
-var bullet_speed
-var fire_rate
+var fire_rate = 0.25
+
+# These are for the shop
+var fire_rate_cost = 500
+var health_cost = 1000
+var score_mult_cost = 2000
+
+var fire_rate_count = 0
+var health_count = 0
+var score_mult_count = 0
 
 func _ready():
 	var root = get_tree().root
