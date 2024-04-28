@@ -4,6 +4,7 @@ extends Area2D
 var start_pos = Vector2.ZERO
 var speed = 80
 var viewport_size = Vector2(720, 960)
+var dead = false
 
 #load bullet scene
 var bullet_scene = preload("uid://qoddbhglyuap")
@@ -27,6 +28,9 @@ func _ready():
 func start(pos):
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
+	speed = 0
+	$MoveTimer.wait_time = randf_range(8, 16)
+	$MoveTimer.start()
 	$ShootCD.wait_time = 1
 	$ShootCD.start()
 
@@ -63,6 +67,7 @@ func explode():
 	$AnimatedSprite2D.play("death")
 	set_deferred("monitoring", false)
 	died.emit(5)
+	dead = true
 	await $AnimatedSprite2D.animation_finished
 	queue_free()
 
@@ -70,3 +75,7 @@ func explode():
 func _on_hit_detection_body_entered(body):
 	explode()
 	queue_free()
+
+
+func _on_move_timer_timeout():
+	speed = 80

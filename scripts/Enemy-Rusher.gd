@@ -3,6 +3,7 @@ extends Area2D
 var start_pos = Vector2.ZERO
 var speed = 0
 var viewport_size = Vector2(720, 960)
+var dead = false
 
 #Used to signal when an enemy is killed
 signal died
@@ -20,7 +21,7 @@ func start(pos):
 	speed = 0
 	position = Vector2(pos.x, pos.y)
 	start_pos = pos
-	$MoveTimer.wait_time = randf_range(1, 10)
+	$MoveTimer.wait_time = randf_range(0, 8)
 	$MoveTimer.start()
 
 #Randomize speed
@@ -39,6 +40,7 @@ func explode():
 	$AnimatedSprite2D.play("death")
 	set_deferred("monitoring", false)
 	died.emit(5)
+	dead = true
 	await $AnimatedSprite2D.animation_finished
 	queue_free()
 
