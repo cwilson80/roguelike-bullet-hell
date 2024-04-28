@@ -42,3 +42,7 @@ func _on_back_button_pressed():
 	$Buttons/StartButton.show()
 	$Buttons/AboutButton.show()
 	$Buttons/QuitButton.show()
+
+# Idle animation for the title text
+func _on_animation_player_animation_finished(TextCreateTitle):
+	$GameTitle/AnimationPlayer.play("TitleIdle")

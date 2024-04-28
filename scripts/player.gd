@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var screensize = get_viewport_rect().size
 
 # Stats
-@export var health = 5
+@export var health = levelInfo.health
 @export var move_speed = 450
 @export var dash_speed = 1300
 @export var slow_speed = 200
@@ -14,7 +14,7 @@ extends CharacterBody2D
 # Timer lengths
 @export var dash_cooldown = 0.5
 @export var dash_length = 0.15
-@export var shoot_cooldown = 0.25
+@export var shoot_cooldown = levelInfo.fire_rate
 @export var consumable_time = 3
 
 @export var projectile : PackedScene

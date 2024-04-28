@@ -13,6 +13,8 @@ func _ready():
 #sets the current level and increments for the next level
 func start():
 	current_level = levelInfo.level
+	current_score = levelInfo.score
+	$Background/AnimationPlayer.play("ParallaxOverTime")
 	spawn_enemies()
 	$LevelTimer.start()
 
@@ -61,7 +63,7 @@ func spawn_long():
 
 
 func _on_enemy_died(value):
-	levelInfo.score += value
+	levelInfo.score += value * levelInfo.score_multiplier
 	current_score = levelInfo.score
 	$HUD/VBoxContainer/ScoreText.text = "Score: " + str(current_score)
 	
