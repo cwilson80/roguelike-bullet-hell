@@ -4,7 +4,9 @@ var level = 1
 var current_scene = null
 var score = 0
 var player_speed
-var fire_rate = 0.25
+var fire_rate = 0.8
+var health = 2
+var score_multiplier = 1
 
 # These are for the shop
 var fire_rate_cost = 500
