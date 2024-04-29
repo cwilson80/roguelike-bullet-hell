@@ -12,6 +12,8 @@ func _ready():
 	$Buttons/BackButton.hide()
 	$AboutInfo.hide()
 	anim_player.play("Slide")
+	
+	$AudioStreamPlayer2D2.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -29,6 +31,8 @@ func _on_about_button_pressed():
 	
 	$Buttons/BackButton.show()
 	$AboutInfo.show()
+	
+	$AudioStreamPlayer2D.play()
 
 
 func _on_quit_button_pressed():
@@ -42,6 +46,8 @@ func _on_back_button_pressed():
 	$Buttons/StartButton.show()
 	$Buttons/AboutButton.show()
 	$Buttons/QuitButton.show()
+	
+	$AudioStreamPlayer2D.play()
 
 # Idle animation for the title text
 func _on_animation_player_animation_finished(TextCreateTitle):

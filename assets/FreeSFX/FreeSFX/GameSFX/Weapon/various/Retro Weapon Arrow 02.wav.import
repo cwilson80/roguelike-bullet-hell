@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuw80vfe611jf"
+path="res://.godot/imported/Retro Weapon Arrow 02.wav-fbc38956bf534a4622a942e71aaf9cc2.sample"
+
+[deps]
+
+source_file="res://assets/FreeSFX/FreeSFX/GameSFX/Weapon/various/Retro Weapon Arrow 02.wav"
+dest_files=["res://.godot/imported/Retro Weapon Arrow 02.wav-fbc38956bf534a4622a942e71aaf9cc2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

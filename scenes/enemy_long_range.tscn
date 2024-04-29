@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bks0um2h5y0ky"]
+[gd_scene load_steps=14 format=3 uid="uid://bks0um2h5y0ky"]
 
 [ext_resource type="Script" path="res://scripts/enemy_long_range.gd" id="1_fnhk5"]
 [ext_resource type="Texture2D" uid="uid://dferrwrve05lc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_1_scaled.png" id="2_dbcgs"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://0xpv30bplg3d" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_4_scaled.png" id="5_icw5d"]
 [ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="6_a6weg"]
 [ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="7_44kuo"]
+[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="10_vdcue"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m8wn7"]
 animations = [{
@@ -82,6 +83,9 @@ shape = SubResource("CapsuleShape2D_t6cko")
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_vdcue")
 
 [connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

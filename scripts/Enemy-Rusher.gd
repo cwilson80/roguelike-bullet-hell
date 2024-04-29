@@ -38,6 +38,7 @@ func _process(delta):
 func explode():
 	speed = 0
 	$AnimatedSprite2D.play("death")
+	$AudioStreamPlayer2D.play()
 	set_deferred("monitoring", false)
 	died.emit(5)
 	dead = true

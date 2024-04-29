@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rk2iesxflxam"
+path="res://.godot/imported/Music_Loop_6_Full.wav-a617d6f1a60faf0edf8b0288347eecd6.sample"
+
+[deps]
+
+source_file="res://assets/Music Loop 6/Music_Loop_6_Full.wav"
+dest_files=["res://.godot/imported/Music_Loop_6_Full.wav-a617d6f1a60faf0edf8b0288347eecd6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

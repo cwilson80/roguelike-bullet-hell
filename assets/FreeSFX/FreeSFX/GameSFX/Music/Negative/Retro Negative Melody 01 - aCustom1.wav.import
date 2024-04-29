@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dktb1ytyb1rrc"
+path="res://.godot/imported/Retro Negative Melody 01 - aCustom1.wav-27fc30d019b9d3aaa3fbc9c3058e59d9.sample"
+
+[deps]
+
+source_file="res://assets/FreeSFX/FreeSFX/GameSFX/Music/Negative/Retro Negative Melody 01 - aCustom1.wav"
+dest_files=["res://.godot/imported/Retro Negative Melody 01 - aCustom1.wav-27fc30d019b9d3aaa3fbc9c3058e59d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

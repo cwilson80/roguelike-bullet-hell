@@ -22,6 +22,8 @@ func _ready():
 	$Labels/ShopTitle2/AnimationPlayer.play("TextCreateMain")
 	$BackgroundShop/AnimationPlayer.play("BackgroundSlide")
 	$Labels/ScoreCounter.text = str(current_score)
+	
+	$AudioStreamPlayer2D.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,6 +39,7 @@ func _on_continue_pressed():
 # Score multiplier cost increases by 1000 every level
 func _on_score_mult_up_pressed():
 	if(current_score_mult_cost <= current_score && current_score_mult_count < 3):
+		buy_sound()
 		if(current_score_mult_count == 0):
 			levelInfo.score_mult_count += 1
 			levelInfo.score -= current_score_mult_cost
@@ -57,6 +60,7 @@ func _on_score_mult_up_pressed():
 		current_score_mult_count = levelInfo.score_mult_count
 	elif(current_score_mult_count != 3):
 		$Labels/ScoreMultLabel/AnimationPlayer.play("NotEnough")
+		not_enough_sound()
 	current_score_mult_cost = levelInfo.score_mult_cost
 	current_score = levelInfo.score
 	$Labels/ScoreCounter.text = str(current_score)
@@ -64,6 +68,7 @@ func _on_score_mult_up_pressed():
 # Health cost increases by 750 every level
 func _on_health_up_pressed():
 	if(current_health_cost <= current_score && current_health_count < 3):
+		buy_sound()
 		if(current_health_count == 0):
 			levelInfo.health_count += 1
 			levelInfo.score -= current_health_cost
@@ -84,6 +89,7 @@ func _on_health_up_pressed():
 		current_health_count = levelInfo.health_count
 	elif(current_health_count != 3):
 		$Labels/HealthLabel/AnimationPlayer.play("NotEnough")
+		not_enough_sound()
 	current_health_cost = levelInfo.health_cost
 	current_score = levelInfo.score
 	$Labels/ScoreCounter.text = str(current_score)
@@ -91,6 +97,7 @@ func _on_health_up_pressed():
 # Fire rate cost increases by 500 every level
 func _on_fire_rate_up_pressed():
 	if(current_fire_rate_cost <= current_score && current_fire_rate_count < 3):
+		buy_sound()
 		if(current_fire_rate_count == 0):
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
@@ -111,6 +118,14 @@ func _on_fire_rate_up_pressed():
 		current_fire_rate_count = levelInfo.fire_rate_count
 	elif(current_fire_rate_count != 3):
 		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")
+		not_enough_sound()
 	current_fire_rate_cost = levelInfo.fire_rate_cost
 	current_score = levelInfo.score
 	$Labels/ScoreCounter.text = str(current_score)
+
+# These just make playing sounds easier
+func buy_sound():
+	$AudioStreamPlayer2D2.play()
+	
+func not_enough_sound():
+	$AudioStreamPlayer2D3.play()

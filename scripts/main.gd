@@ -6,14 +6,23 @@ var enemyMid = preload("res://scenes/enemy_mid_range.tscn")
 var enemyLong = preload("res://scenes/enemy_long_range.tscn")
 var current_level = 0
 var current_score = 0
+var current_health = 2
 
 func _ready():
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D2.play()
+	$AudioStreamPlayer2D3.play()
 	start()
 
 #sets the current level and increments for the next level
 func start():
 	current_level = levelInfo.level
 	current_score = levelInfo.score
+	current_health = levelInfo.health
+	
+	$HUD/VBoxContainer/LevelText.text = "Level " + str(current_level)
+	$HUD/VBoxContainer/ScoreText.text = "Score: " + str(current_score)
+	$HUD/VBoxContainer/HealthText.text = "HP: " + str(current_health)
 	$Background/AnimationPlayer.play("ParallaxOverTime")
 	spawn_enemies()
 	$LevelTimer.start()
@@ -92,4 +101,7 @@ func _on_animation_player_animation_finished(LevelUpFlash):
 	$CanvasLayer/LevelUpText.hide()
 
 func _process(delta):
-	pass
+	# This handles pausing the game
+	$PauseMenu.hide()
+	if(Input.is_action_just_pressed("pause") && get_tree().is_paused() == false):
+		get_tree().paused = true

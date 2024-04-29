@@ -32,13 +32,15 @@ func _process(_delta):
 	
 	# Can only dash, slow, or move at a time
 	if Input.is_action_just_pressed("dash") and can_dash and not slow: # Dash movement
-		dashing = true
-		can_dash = false
-		$Timers/DashTimer.wait_time = dash_length
-		$Timers/DashTimer.start()
-		$Timers/DashCooldown.wait_time = dash_cooldown
-		$Timers/DashCooldown.start()
-		velocity = direction * dash_speed
+		if(direction):
+			$AudioStreamPlayer2D2.play()
+			dashing = true
+			can_dash = false
+			$Timers/DashTimer.wait_time = dash_length
+			$Timers/DashTimer.start()
+			$Timers/DashCooldown.wait_time = dash_cooldown
+			$Timers/DashCooldown.start()
+			velocity = direction * dash_speed
 	
 	elif Input.is_action_just_pressed("slow") and not dashing: # Start slow movement
 		slow = true
@@ -64,13 +66,13 @@ func _process(_delta):
 	# Shoot check
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
+		$AudioStreamPlayer2D.play()
 	
 	move_and_slide()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# TODO: Implement a file that stores player stats to initialize them
 	shoot_cooldown = levelInfo.fire_rate
 
 

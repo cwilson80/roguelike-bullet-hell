@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dj4bgbuf4voc7"
+path="res://.godot/imported/Music_Loop_6_Full.ogg-12dc5459488a22280fe1d681ed0432f5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music Loop 6/Ogg/Music_Loop_6_Full.ogg"
+dest_files=["res://.godot/imported/Music_Loop_6_Full.ogg-12dc5459488a22280fe1d681ed0432f5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
