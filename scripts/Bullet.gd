@@ -11,7 +11,7 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	if area.is_in_group("enemies"):
+	if area.is_in_group("enemies") and area.dead == false:
 		area.explode()
 		queue_free() #removes the node safely to help save resources
 

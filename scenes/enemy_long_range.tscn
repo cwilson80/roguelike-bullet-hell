@@ -68,7 +68,6 @@ sprite_frames = SubResource("SpriteFrames_m8wn7")
 animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_8h70h")
 
 [node name="ShootCD" type="Timer" parent="."]
@@ -81,5 +80,9 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
 shape = SubResource("CapsuleShape2D_t6cko")
 
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]

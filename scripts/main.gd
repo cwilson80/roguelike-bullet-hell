@@ -26,7 +26,7 @@ func spawn_enemies():
 #function for spawning rusher enemies
 #spawns in 3 rows ^ of the current level of 4^current level of long range units
 func spawn_rusher():
-	for x in range(pow(4, current_level)):
+	for x in range(4*current_level):
 		for y in range(pow(3, snappedi(1, current_level*.1))):
 			var e = enemy.instantiate()
 			var random_x = randi() % (700) + 5  # Generate a random x within the specified range
@@ -39,7 +39,7 @@ func spawn_rusher():
 #function for spawning mid range enemies
 #spawns in 2 rows ^ of the current level of 3^current level of long range units
 func spawn_mid():
-	for x in range(pow(3, current_level)):
+	for x in range(3*current_level):
 		for y in range(pow(2, snappedi(1, current_level*.1))):
 			var em = enemyMid.instantiate()
 			var random_x = randi() % (700) + 5  # Generate a random x within the specified range
@@ -52,7 +52,7 @@ func spawn_mid():
 #function for spawning long range enemies
 #spawns in 2 rows ^ number of the current level of 2^1-.1*current level of long range units
 func spawn_long():
-	for x in range(pow(2, current_level)):
+	for x in range(2*current_level):
 		for y in range(pow(2, snappedi(1, current_level*.1))):
 			var el = enemyLong.instantiate()
 			var random_x = randi() % (700) + 20  # Generate a random x within the specified range
@@ -81,6 +81,10 @@ func _on_level_timer_timeout():
 	if current_level % 3 == 0:
 		#goto_scene("res://scenes/shop.tscn") # This scene does not exist yet
 		get_tree().change_scene_to_file("res://scenes/shop.tscn")
+	
+	#je
+	#adding enemy spawning to leveling up
+	spawn_enemies()
 
 # This handles the visibility of the "Level Up" text
 # More specifically, it hides the text once the animation is done
