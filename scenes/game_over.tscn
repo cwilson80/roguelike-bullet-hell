@@ -24,11 +24,33 @@ text = "Game over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FinalScore" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 280.0
+offset_right = 624.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("3_45vcb")
+theme_override_font_sizes/font_size = 20
+text = "final score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalLevel" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 336.0
+offset_right = 656.0
+offset_bottom = 397.0
+theme_override_fonts/font = ExtResource("3_45vcb")
+theme_override_font_sizes/font_size = 20
+text = "final level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RetryButton" type="Button" parent="."]
-offset_left = 218.0
-offset_top = 426.0
-offset_right = 487.0
-offset_bottom = 477.0
+offset_left = 216.0
+offset_top = 488.0
+offset_right = 485.0
+offset_bottom = 539.0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("4_xqdec")
 theme_override_font_sizes/font_size = 35
@@ -36,10 +58,10 @@ text = "Play again"
 flat = true
 
 [node name="ExitButton" type="Button" parent="."]
-offset_left = 210.0
-offset_top = 519.0
-offset_right = 492.0
-offset_bottom = 583.0
+offset_left = 208.0
+offset_top = 581.0
+offset_right = 490.0
+offset_bottom = 645.0
 theme_override_fonts/font = ExtResource("3_45vcb")
 theme_override_font_sizes/font_size = 30
 text = "Exit to menu"

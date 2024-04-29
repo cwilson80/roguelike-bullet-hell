@@ -4,6 +4,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer2D.play()
+	$FinalScore.text = "Final Score: " + str(levelInfo.score)
+	$FinalLevel.text = "You made it to level " + str(levelInfo.level)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

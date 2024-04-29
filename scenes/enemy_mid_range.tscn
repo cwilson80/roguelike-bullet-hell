@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://coup6h0tns2qy" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/enemy mid range/AndromedaRangerCaptain2.png" id="9_45x5i"]
 [ext_resource type="Texture2D" uid="uid://bxsbyfurdbx2c" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/enemy mid range/AndromedaRangerCaptain3.png" id="10_nkf1x"]
 [ext_resource type="Texture2D" uid="uid://bwga6cwrj1fmr" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/enemy mid range/AndromedaRangerCaptain4.png" id="11_rnqnt"]
-[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="12_oogfp"]
+[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="12_ubqdt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lpq1a"]
 animations = [{
@@ -94,7 +94,7 @@ shape = SubResource("CapsuleShape2D_ey6ij")
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_oogfp")
+stream = ExtResource("12_ubqdt")
 
 [connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

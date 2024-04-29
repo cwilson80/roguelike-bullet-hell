@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://0xpv30bplg3d" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_4_scaled.png" id="6_acoxx"]
 [ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="7_0bv4i"]
 [ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="8_ju2jn"]
-[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="9_ukf17"]
+[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="9_coa4o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5k1ip"]
 animations = [{
@@ -94,7 +94,7 @@ position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_lhbpq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_ukf17")
+stream = ExtResource("9_coa4o")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
