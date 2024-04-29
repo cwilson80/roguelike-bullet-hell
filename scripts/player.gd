@@ -31,6 +31,7 @@ var dead = false
 func _process(_delta):
 	# Get input direction
 	var direction = Input.get_vector("left", "right", "up", "down")
+	position = position.clamp(Vector2.ZERO, screensize)
 	
 	
 	# Can only dash, slow, or move at a time

@@ -26,7 +26,7 @@ func start(pos):
 
 #Randomize speed
 func _on_move_timer_timeout():
-	speed = randf_range(75, 100)
+	speed = randf_range(50, 115)
 
 #Allows movement
 func _process(delta):

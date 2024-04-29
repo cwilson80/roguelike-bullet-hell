@@ -32,7 +32,7 @@ func start(pos):
 	speed = 0
 	$MoveTimer.wait_time = randf_range(3, 11)
 	$MoveTimer.start()
-	$ShootCD.wait_time = 6
+	$ShootCD.wait_time = 11
 	$ShootCD.start()
 
 
@@ -41,8 +41,12 @@ func start(pos):
 func _process(delta):
 	position.y += speed * delta
 	
+	if position.y > viewport_size.y / 4:
+		speed = 80
 	if position.y > viewport_size.y / 2:
 		speed = 20
+	if position.y > viewport_size.y * .85:
+		speed = 90
 	
 	if position.y > viewport_size.y + 32:
 		speed = 90
