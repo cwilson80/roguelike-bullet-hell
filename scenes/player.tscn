@@ -15,8 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://c374kfff5wihv" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch Hurt 01.wav" id="13_n61mt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxko2"]
-radius = 12.0
-height = 56.0
+radius = 8.0
+height = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uth14"]
 animations = [{
@@ -114,7 +114,7 @@ wait_time = 0.1
 [node name="ConsumableTimer" type="Timer" parent="Timers"]
 
 [node name="InvulnerabilityTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 2.0
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

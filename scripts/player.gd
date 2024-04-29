@@ -58,7 +58,7 @@ func _process(_delta):
 		slow = false
 		$HitDetection/CollisionShape2D/ColorRect.visible = false
 		$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)
-		shoot_cooldown = 0.25
+		shoot_cooldown = levelInfo.fire_rate
 	
 	elif not dashing and not slow: # Normal movement
 		if consumable_active: # Consumable check
