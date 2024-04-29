@@ -47,4 +47,8 @@ func explode():
 
 
 func _on_hit_detection_body_entered(body):
-	queue_free()
+	if body.name == "Player":
+		body.hit()
+	else:
+		explode()
+		queue_free()

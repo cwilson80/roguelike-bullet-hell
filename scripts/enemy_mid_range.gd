@@ -83,8 +83,11 @@ func explode():
 
 
 func _on_hit_detection_body_entered(body):
-	explode()
-	queue_free()
+	if body.name == "Player":
+		body.hit()
+	else:
+		explode()
+		queue_free()
 
 
 func _on_move_timer_timeout():

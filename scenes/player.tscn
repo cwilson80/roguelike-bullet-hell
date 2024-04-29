@@ -1,11 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://c50vxehsggxm0"]
+[gd_scene load_steps=17 format=3 uid="uid://c50vxehsggxm0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5tu1j"]
 [ext_resource type="Texture2D" uid="uid://di5igw0e3pxb1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a.png" id="2_jdq50"]
 [ext_resource type="PackedScene" uid="uid://c546qh7asdv5v" path="res://scenes/bullet.tscn" id="2_n0i2m"]
-[ext_resource type="Texture2D" uid="uid://byqjm8h5202mc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a-dodge.png" id="3_e068y"]
+[ext_resource type="Texture2D" uid="uid://dferrwrve05lc" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_1_scaled.png" id="3_pe688"]
+[ext_resource type="Texture2D" uid="uid://bkqjdaanvc3kd" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_2_scaled.png" id="4_jds4f"]
 [ext_resource type="AudioStream" uid="uid://dx7vs3xuw0y3x" path="res://assets/FreeSFX/FreeSFX/GameSFX/Weapon/laser/Retro Gun Laser SingleShot 01.wav" id="5_1swbg"]
+[ext_resource type="Texture2D" uid="uid://dd8ptbe7kfwl1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_3_scaled.png" id="5_soqtv"]
 [ext_resource type="AudioStream" uid="uid://u4jus1quca3s" path="res://assets/FreeSFX/FreeSFX/GameSFX/Swoosh/Retro Swooosh 02.wav" id="6_8mnkm"]
+[ext_resource type="Texture2D" uid="uid://0xpv30bplg3d" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_4_scaled.png" id="6_sslfn"]
+[ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="7_0i6fs"]
+[ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="7_1gmas"]
+[ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="8_y6pxu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxko2"]
 radius = 12.0
@@ -13,17 +19,35 @@ height = 56.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uth14"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pe688")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jds4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_soqtv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sslfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1gmas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y6pxu")
+}],
+"loop": false,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_e068y")
+"texture": ExtResource("2_jdq50")
 }],
 "loop": true,
-"name": &"dodge",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -43,12 +67,11 @@ metadata/_edit_group_ = true
 shape = SubResource("CapsuleShape2D_uxko2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 scale = Vector2(0.194824, 0.194824)
 sprite_frames = SubResource("SpriteFrames_uth14")
-animation = &"dodge"
 
 [node name="P-blue-a" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.196289, 0.196289)
 texture = ExtResource("2_jdq50")
 
@@ -89,6 +112,10 @@ wait_time = 0.1
 
 [node name="ConsumableTimer" type="Timer" parent="Timers"]
 
+[node name="InvulnerabilityTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_1swbg")
 
@@ -96,9 +123,12 @@ stream = ExtResource("5_1swbg")
 stream = ExtResource("6_8mnkm")
 volume_db = -10.0
 
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0i6fs")
+
 [connection signal="body_entered" from="ConsumableDetection" to="." method="_on_consumable_detection_body_entered"]
-[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
 [connection signal="timeout" from="Timers/ShootCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Timers/DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="Timers/ConsumableTimer" to="." method="_on_consumable_timer_timeout"]
+[connection signal="timeout" from="Timers/InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

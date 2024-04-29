@@ -25,10 +25,13 @@ var can_dash = true
 var dashing = false
 var slow = false
 var consumable_active = false
+var invulnerable = false
+var dead = false
 
 func _process(_delta):	
 	# Get input direction
 	var direction = Input.get_vector("left", "right", "up", "down")
+	
 	
 	# Can only dash, slow, or move at a time
 	if Input.is_action_just_pressed("dash") and can_dash and not slow: # Dash movement
@@ -45,7 +48,7 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("slow") and not dashing: # Start slow movement
 		slow = true
 		$HitDetection/CollisionShape2D/ColorRect.visible = true
-		$"P-blue-a".modulate = Color(0.3, 0.3, 0.3, 1)
+		$AnimatedSprite2D.modulate = Color(0.3, 0.3, 0.3, 1)
 		shoot_cooldown = 0.15
 	
 	elif Input.is_action_pressed("slow") and slow: # Slow movement
@@ -54,7 +57,7 @@ func _process(_delta):
 	elif Input.is_action_just_released("slow") and slow: # End slow movement
 		slow = false
 		$HitDetection/CollisionShape2D/ColorRect.visible = false
-		$"P-blue-a".modulate = Color(1, 1, 1, 1)
+		$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)
 		shoot_cooldown = 0.25
 	
 	elif not dashing and not slow: # Normal movement
@@ -68,7 +71,8 @@ func _process(_delta):
 		shoot()
 		$AudioStreamPlayer2D.play()
 	
-	move_and_slide()
+	if !dead:
+		move_and_slide()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -101,15 +105,29 @@ func _on_dash_cooldown_timeout():
 	can_dash = true
 
 
-func _on_hit_detection_body_entered(_body):
-	health -= 1
-	print("Hit!")
-	if health <= 0:
-		call_deferred("restart")
+func hit():
+	if !invulnerable:
+		invulnerable = true
+		$Timers/InvulnerabilityTimer.start()
+		health -= 1
+		print("Hit!")
+		if health <= 0:
+			explode()
 
 func restart():
-	# TODO: Implement restart, doesn't have to be in player
-	pass
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+func explode():
+	dead = true
+	can_shoot = false
+	dashing = true
+	slow = false
+	can_dash = false
+	$AnimatedSprite2D.play("death")
+	$AudioStreamPlayer2D3.play()
+	#set_deferred("monitoring", false)
+	await $AnimatedSprite2D.animation_finished
+	call_deferred("restart")
 
 
 func _on_consumable_detection_body_entered(body):
@@ -121,3 +139,7 @@ func _on_consumable_detection_body_entered(body):
 
 func _on_consumable_timer_timeout():
 	consumable_active = false
+
+
+func _on_invulnerability_timer_timeout():
+	invulnerable = false

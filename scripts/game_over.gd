@@ -34,7 +34,7 @@ func _on_retry_button_pressed():
 
 
 func _on_exit_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/start_menu")
+	get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 	levelInfo.level = 1
 	levelInfo.current_scene = null
 	levelInfo.score = 0
