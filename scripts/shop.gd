@@ -27,6 +27,10 @@ func _ready():
 	$Labels/ShopTitle1/AnimationPlayer.play("TextCreateSub")
 	$Labels/ShopTitle2/AnimationPlayer.play("TextCreateMain")
 	$BackgroundShop/AnimationPlayer.play("BackgroundSlide")
+	$ShopButtons/FireRateUp/AnimationPlayer.play("IdleFire")
+	$ShopButtons/HealthUp/AnimationPlayer.play("IdleHealth")
+	$ShopButtons/ScoreMultUp/AnimationPlayer.play("IdleScore")
+	
 	$Labels/ScoreCounter.text = str(current_score)
 	$ShopButtons/Continue.text = "Next level (" + str(levelInfo.level) + ") >"
 	

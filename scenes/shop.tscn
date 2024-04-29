@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://g5k3fvdoi1i2"]
+[gd_scene load_steps=38 format=3 uid="uid://g5k3fvdoi1i2"]
 
 [ext_resource type="Script" path="res://scripts/shop.gd" id="1_qomta"]
 [ext_resource type="Texture2D" uid="uid://b2qjlukcwitm0" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper2.jpg" id="1_yltwu"]
@@ -47,6 +47,120 @@ tracks/0/keys = {
 _data = {
 "BackgroundSlide": SubResource("Animation_xwc3i"),
 "RESET": SubResource("Animation_41ekf")
+}
+
+[sub_resource type="Animation" id="Animation_veh1d"]
+resource_name = "IdleFire"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(24, 344), Vector2(24, 354)]
+}
+
+[sub_resource type="Animation" id="Animation_nbiwb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 344.215)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wvdg4"]
+_data = {
+"IdleFire": SubResource("Animation_veh1d"),
+"RESET": SubResource("Animation_nbiwb")
+}
+
+[sub_resource type="Animation" id="Animation_ij4f6"]
+resource_name = "IdleHealth"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(256, 336), Vector2(256, 346)]
+}
+
+[sub_resource type="Animation" id="Animation_pfu13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 336.215)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3lqx0"]
+_data = {
+"IdleHealth": SubResource("Animation_ij4f6"),
+"RESET": SubResource("Animation_pfu13")
+}
+
+[sub_resource type="Animation" id="Animation_nfnrs"]
+resource_name = "IdleScore"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(490.665, 337), Vector2(490.665, 347)]
+}
+
+[sub_resource type="Animation" id="Animation_j42ng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(490.665, 337.541)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxp7e"]
+_data = {
+"IdleScore": SubResource("Animation_nfnrs"),
+"RESET": SubResource("Animation_j42ng")
 }
 
 [sub_resource type="Animation" id="Animation_rpby2"]
@@ -253,12 +367,17 @@ libraries = {
 offset_left = 24.0
 offset_top = 344.215
 offset_right = 216.0
-offset_bottom = 544.215
+offset_bottom = 544.214
 focus_mode = 0
 icon = ExtResource("3_ioqsg")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopButtons/FireRateUp"]
+libraries = {
+"": SubResource("AnimationLibrary_wvdg4")
+}
 
 [node name="HealthUp" type="Button" parent="ShopButtons"]
 offset_left = 256.0
@@ -271,6 +390,11 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopButtons/HealthUp"]
+libraries = {
+"": SubResource("AnimationLibrary_3lqx0")
+}
+
 [node name="ScoreMultUp" type="Button" parent="ShopButtons"]
 offset_left = 490.665
 offset_top = 337.541
@@ -281,6 +405,11 @@ icon = ExtResource("5_n63jw")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopButtons/ScoreMultUp"]
+libraries = {
+"": SubResource("AnimationLibrary_rxp7e")
+}
 
 [node name="Continue" type="Button" parent="ShopButtons"]
 offset_left = 512.0
