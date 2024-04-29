@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dua4bawx75iq7"]
+[gd_scene load_steps=21 format=3 uid="uid://dua4bawx75iq7"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6yal3"]
 [ext_resource type="Texture2D" uid="uid://db0o3rwuv6pw2" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/Wallpaper1.jpg" id="2_vb1p0"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://duhhfkel042em" path="res://assets/FreeSFX/FreeSFX/GameSFX/Blops/Retro Blop 07.wav" id="8_4a4ey"]
 [ext_resource type="AudioStream" uid="uid://rk2iesxflxam" path="res://assets/Music Loop 6/Music_Loop_6_Full.wav" id="9_b7v1f"]
 [ext_resource type="AudioStream" uid="uid://cltppcw2vefk7" path="res://assets/FreeSFX/FreeSFX/GameSFX/Ambience/Retro Ambience 02.wav" id="9_xfrei"]
+[ext_resource type="AudioStream" uid="uid://bmsdog68a2os2" path="res://assets/FreeSFX/FreeSFX/GameSFX/Events/Retro Event UI 13.wav" id="11_4k5dx"]
 
 [sub_resource type="Animation" id="Animation_c72ta"]
 resource_name = "ParallaxOverTime"
@@ -276,6 +277,17 @@ volume_db = -19.991
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_b7v1f")
 volume_db = -10.0
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_4k5dx")
+
+[node name="DamageOverlay" type="ColorRect" parent="."]
+visible = false
+offset_left = -95.0
+offset_top = -57.0
+offset_right = 737.0
+offset_bottom = 1008.0
+color = Color(1, 0, 0, 0.113725)
 
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="animation_finished" from="CanvasLayer/LevelUpText/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

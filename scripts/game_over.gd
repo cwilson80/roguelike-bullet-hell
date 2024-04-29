@@ -14,7 +14,6 @@ func _process(delta):
 
 
 func _on_retry_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	# Soooooo this is kinda ugly code, would wanna make a function to do this, but
 	# Since this is only required like three times, it's not that useful to take
 	# the time to make a function for it and I'm lazy
@@ -31,10 +30,10 @@ func _on_retry_button_pressed():
 	levelInfo.fire_rate_count = 0
 	levelInfo.health_count = 0
 	levelInfo.score_mult_count = 2000
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_exit_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
 	levelInfo.level = 1
 	levelInfo.current_scene = null
 	levelInfo.score = 0
@@ -48,3 +47,4 @@ func _on_exit_button_pressed():
 	levelInfo.fire_rate_count = 0
 	levelInfo.health_count = 0
 	levelInfo.score_mult_count = 2000
+	get_tree().change_scene_to_file("res://scenes/start_menu.tscn")

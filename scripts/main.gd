@@ -80,6 +80,7 @@ func _on_enemy_died(value):
 # Levels the player up every minute, though this is subject to change
 # Right now, the player is taken to the shop every 3 levels
 func _on_level_timer_timeout():
+	$AudioStreamPlayer2D4.play()
 	levelInfo.level += 1
 	current_level = levelInfo.level
 	$HUD/VBoxContainer/LevelText.text = "Level " + str(current_level)
@@ -88,13 +89,15 @@ func _on_level_timer_timeout():
 	$CanvasLayer/LevelUpText/AnimationPlayer.play("LevelUpFlash")
 	# This decides whether to go to the shop or not
 	if current_level % 3 == 0:
-		#goto_scene("res://scenes/shop.tscn") # This scene does not exist yet
+		reset_enemies()
+		await("reset_enemies")
 		get_tree().change_scene_to_file("res://scenes/shop.tscn")
-	
-	#je
-	#adding enemy spawning to leveling up
 	spawn_enemies()
 
+func reset_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
+		
 # This handles the visibility of the "Level Up" text
 # More specifically, it hides the text once the animation is done
 func _on_animation_player_animation_finished(LevelUpFlash):

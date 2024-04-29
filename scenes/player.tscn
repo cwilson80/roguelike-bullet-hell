@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c50vxehsggxm0"]
+[gd_scene load_steps=18 format=3 uid="uid://c50vxehsggxm0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5tu1j"]
 [ext_resource type="Texture2D" uid="uid://di5igw0e3pxb1" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/P-blue-a.png" id="2_jdq50"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://inkyif7s3rbj" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch 07.wav" id="7_0i6fs"]
 [ext_resource type="Texture2D" uid="uid://b8xi1dgqsgghn" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_5_scaled.png" id="7_1gmas"]
 [ext_resource type="Texture2D" uid="uid://cdwji8ugj17bb" path="res://assets/Pixel Spaceships - Shoot'em Ups pack HD/explosion/scaled/explosion_6_scaled.png" id="8_y6pxu"]
+[ext_resource type="AudioStream" uid="uid://c374kfff5wihv" path="res://assets/FreeSFX/FreeSFX/GameSFX/Impact/Retro Impact Punch Hurt 01.wav" id="13_n61mt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uxko2"]
 radius = 12.0
@@ -125,6 +126,10 @@ volume_db = -10.0
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0i6fs")
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_n61mt")
+volume_db = 5.0
 
 [connection signal="body_entered" from="ConsumableDetection" to="." method="_on_consumable_detection_body_entered"]
 [connection signal="timeout" from="Timers/ShootCooldown" to="." method="_on_gun_cooldown_timeout"]

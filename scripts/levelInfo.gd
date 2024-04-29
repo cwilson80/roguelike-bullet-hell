@@ -17,6 +17,10 @@ var fire_rate_count = 0
 var health_count = 0
 var score_mult_count = 0
 
+var fire_rate_text = "fire rate i \n500"
+var health_text = "health i \n1000"
+var score_mult_text = "health i \n2000"
+
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)

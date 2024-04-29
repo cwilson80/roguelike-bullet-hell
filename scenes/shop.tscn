@@ -293,6 +293,7 @@ theme_override_fonts/font = ExtResource("3_tj8jr")
 theme_override_font_sizes/font_size = 20
 text = "Next level >"
 flat = true
+alignment = 2
 
 [node name="Labels" type="Node2D" parent="."]
 

@@ -28,7 +28,7 @@ var consumable_active = false
 var invulnerable = false
 var dead = false
 
-func _process(_delta):	
+func _process(_delta):
 	# Get input direction
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
@@ -107,17 +107,30 @@ func _on_dash_cooldown_timeout():
 
 func hit():
 	if !invulnerable:
+		$AudioStreamPlayer2D4.play()
 		invulnerable = true
 		$Timers/InvulnerabilityTimer.start()
 		health -= 1
-		print("Hit!")
+		levelInfo.health = health
+		get_node("../HUD/VBoxContainer/HealthText").text = "HP: " + str(health)
 		if health <= 0:
 			explode()
+		hurt_flash()
+
+func hurt_flash():
+	get_node("../DamageOverlay").show()
+	await get_tree().create_timer(0.1).timeout
+	get_node("../DamageOverlay").hide()
+	await get_tree().create_timer(0.1).timeout
+	get_node("../DamageOverlay").show()
+	await get_tree().create_timer(0.1).timeout
+	get_node("../DamageOverlay").hide()
 
 func restart():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func explode():
+	$Timers/InvulnerabilityTimer.start(5)
 	dead = true
 	can_shoot = false
 	dashing = true
@@ -127,7 +140,13 @@ func explode():
 	$AudioStreamPlayer2D3.play()
 	#set_deferred("monitoring", false)
 	await $AnimatedSprite2D.animation_finished
+	reset_enemies()
+	await reset_enemies()
 	call_deferred("restart")
+
+func reset_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.queue_free()
 
 
 func _on_consumable_detection_body_entered(body):

@@ -7,6 +7,9 @@ var current_score_mult_cost
 var current_fire_rate_count
 var current_health_count
 var current_score_mult_count
+var current_fire_text
+var current_health_text
+var current_score_mult_text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,11 +20,15 @@ func _ready():
 	current_fire_rate_count = levelInfo.fire_rate_count
 	current_health_count = levelInfo.health_count
 	current_score_mult_count = levelInfo.score_mult_count
+	current_fire_text = levelInfo.fire_rate_text
+	current_health_text = levelInfo.health_text
+	current_score_mult_text = levelInfo.score_mult_text
 
 	$Labels/ShopTitle1/AnimationPlayer.play("TextCreateSub")
 	$Labels/ShopTitle2/AnimationPlayer.play("TextCreateMain")
 	$BackgroundShop/AnimationPlayer.play("BackgroundSlide")
 	$Labels/ScoreCounter.text = str(current_score)
+	$ShopButtons/Continue.text = "Next level (" + str(levelInfo.level) + ") >"
 	
 	$AudioStreamPlayer2D.play()
 
@@ -46,17 +53,20 @@ func _on_score_mult_up_pressed():
 			levelInfo.score_mult_cost = 3000
 			levelInfo.score_multiplier = 2
 			$Labels/ScoreMultLabel.text = "score multiplier ii \n3000"
+			levelInfo.score_mult_text = "score multiplier ii \n3000"
 		elif(current_score_mult_count == 1):
 			levelInfo.score_mult_count += 1
 			levelInfo.score -= current_score_mult_cost
 			levelInfo.score_mult_cost = 4000
 			levelInfo.score_multiplier = 3
 			$Labels/ScoreMultLabel.text = "score multiplier iii \n4000"
+			levelInfo.score_mult_text = "score multiplier iii \n4000"
 		else:
 			levelInfo.score_mult_count += 1
 			levelInfo.score -= current_score_mult_cost
 			levelInfo.score_multiplier = 4
 			$Labels/ScoreMultLabel.text = "MAX"
+			levelInfo.score_mult_text = "MAX"
 		current_score_mult_count = levelInfo.score_mult_count
 	elif(current_score_mult_count != 3):
 		$Labels/ScoreMultLabel/AnimationPlayer.play("NotEnough")
@@ -75,17 +85,20 @@ func _on_health_up_pressed():
 			levelInfo.health_cost = 1750
 			levelInfo.health = 3
 			$Labels/HealthLabel.text = "health ii \n1750"
+			levelInfo.health_text = "health ii \n1750"
 		elif(current_health_count == 1):
 			levelInfo.health_count += 1
 			levelInfo.score -= current_health_cost
 			levelInfo.health_cost = 2500
 			levelInfo.health = 4
 			$Labels/HealthLabel.text = "health iii \n2500"
+			levelInfo.health_text = "health iii \n2500"
 		else:
 			levelInfo.health_count += 1
 			levelInfo.score -= current_health_cost
 			levelInfo.health = 5
 			$Labels/HealthLabel.text = "MAX"
+			levelInfo.health_text = "MAX"
 		current_health_count = levelInfo.health_count
 	elif(current_health_count != 3):
 		$Labels/HealthLabel/AnimationPlayer.play("NotEnough")
@@ -104,17 +117,20 @@ func _on_fire_rate_up_pressed():
 			levelInfo.fire_rate_cost = 1000
 			levelInfo.fire_rate = 0.6
 			$Labels/FireRateLabel.text = "fire rate ii \n1000"
+			levelInfo.health_text = "fire rate ii \n1000"
 		elif(current_fire_rate_count == 1):
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate_cost = 1500
 			levelInfo.fire_rate = 0.4
 			$Labels/FireRateLabel.text = "fire rate iii \n1500"
+			levelInfo.health_text = "fire rate iii \n1500"
 		else:
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate = 0.25
 			$Labels/FireRateLabel.text = "MAX"
+			levelInfo.health_text = "MAX"
 		current_fire_rate_count = levelInfo.fire_rate_count
 	elif(current_fire_rate_count != 3):
 		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")
@@ -123,7 +139,7 @@ func _on_fire_rate_up_pressed():
 	current_score = levelInfo.score
 	$Labels/ScoreCounter.text = str(current_score)
 
-# These just make playing sounds easier
+# These just make playing sounds easier to understand in code
 func buy_sound():
 	$AudioStreamPlayer2D2.play()
 	
