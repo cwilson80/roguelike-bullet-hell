@@ -81,6 +81,7 @@ func _on_score_mult_up_pressed():
 			levelInfo.score_mult_text = "MAX"
 		current_score_mult_count = levelInfo.score_mult_count
 	elif(current_score_mult_count != 3):
+		$Labels/ScoreMultLabel/AnimationPlayer.play("RESET")
 		$Labels/ScoreMultLabel/AnimationPlayer.play("NotEnough")
 		not_enough_sound()
 	current_score_mult_cost = levelInfo.score_mult_cost
@@ -113,6 +114,7 @@ func _on_health_up_pressed():
 			levelInfo.health_text = "MAX"
 		current_health_count = levelInfo.health_count
 	elif(current_health_count != 3):
+		$Labels/ScoreMultLabel/AnimationPlayer.play("RESET")
 		$Labels/HealthLabel/AnimationPlayer.play("NotEnough")
 		not_enough_sound()
 	current_health_cost = levelInfo.health_cost
@@ -145,6 +147,7 @@ func _on_fire_rate_up_pressed():
 			levelInfo.fire_rate_text = "MAX"
 		current_fire_rate_count = levelInfo.fire_rate_count
 	elif(current_fire_rate_count != 3):
+		$Labels/ScoreMultLabel/AnimationPlayer.play("RESET")
 		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")
 		not_enough_sound()
 	current_fire_rate_cost = levelInfo.fire_rate_cost

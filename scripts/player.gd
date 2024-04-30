@@ -141,6 +141,7 @@ func restart():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func explode():
+	modulate.a = 1
 	$Timers/InvulnerabilityTimer.start(5)
 	$HitDetection/CollisionShape2D/ColorRect.visible = false
 	$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)
