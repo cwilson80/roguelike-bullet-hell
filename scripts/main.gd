@@ -125,7 +125,6 @@ func _process(delta):
 	$PauseMenu.hide()
 	if(Input.is_action_just_pressed("pause") && get_tree().is_paused() == false):
 		get_tree().paused = true
-	print(count_alive_enemies())
 	if count_alive_enemies() == 0:
 		next_level()
 
