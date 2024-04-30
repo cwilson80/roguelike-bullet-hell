@@ -47,7 +47,7 @@ func _process(_delta):
 			$Timers/DashCooldown.wait_time = dash_cooldown
 			$Timers/DashCooldown.start()
 			velocity = direction * dash_speed
-			await get_tree().create_timer(0.25).timeout 
+			await get_tree().create_timer(0.5).timeout 
 			$CollisionShape2D.disabled = false
 			modulate.a = 1
 	

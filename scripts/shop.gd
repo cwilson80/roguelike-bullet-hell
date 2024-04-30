@@ -23,13 +23,21 @@ func _ready():
 	current_fire_text = levelInfo.fire_rate_text
 	current_health_text = levelInfo.health_text
 	current_score_mult_text = levelInfo.score_mult_text
-
+	
+	print(levelInfo.health_text)
+	print(levelInfo.fire_rate_text)
+	print(levelInfo.score_mult_text)
+	
 	$Labels/ShopTitle1/AnimationPlayer.play("TextCreateSub")
 	$Labels/ShopTitle2/AnimationPlayer.play("TextCreateMain")
 	$BackgroundShop/AnimationPlayer.play("BackgroundSlide")
 	$ShopButtons/FireRateUp/AnimationPlayer.play("IdleFire")
 	$ShopButtons/HealthUp/AnimationPlayer.play("IdleHealth")
 	$ShopButtons/ScoreMultUp/AnimationPlayer.play("IdleScore")
+	
+	$Labels/FireRateLabel.text = current_fire_text
+	$Labels/HealthLabel.text = current_health_text
+	$Labels/ScoreMultLabel.text = current_score_mult_text
 	
 	$Labels/ScoreCounter.text = str(current_score)
 	$ShopButtons/Continue.text = "Next level (" + str(levelInfo.level) + ") >"
@@ -121,20 +129,20 @@ func _on_fire_rate_up_pressed():
 			levelInfo.fire_rate_cost = 1000
 			levelInfo.fire_rate = 0.6
 			$Labels/FireRateLabel.text = "fire rate ii \n1000"
-			levelInfo.health_text = "fire rate ii \n1000"
+			levelInfo.fire_rate_text = "fire rate ii \n1000"
 		elif(current_fire_rate_count == 1):
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate_cost = 1500
 			levelInfo.fire_rate = 0.4
 			$Labels/FireRateLabel.text = "fire rate iii \n1500"
-			levelInfo.health_text = "fire rate iii \n1500"
+			levelInfo.fire_rate_text = "fire rate iii \n1500"
 		else:
 			levelInfo.fire_rate_count += 1
 			levelInfo.score -= current_fire_rate_cost
 			levelInfo.fire_rate = 0.25
 			$Labels/FireRateLabel.text = "MAX"
-			levelInfo.health_text = "MAX"
+			levelInfo.fire_rate_text = "MAX"
 		current_fire_rate_count = levelInfo.fire_rate_count
 	elif(current_fire_rate_count != 3):
 		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")

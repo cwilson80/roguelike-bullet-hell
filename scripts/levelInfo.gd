@@ -19,7 +19,7 @@ var score_mult_count = 0
 
 var fire_rate_text = "fire rate i \n500"
 var health_text = "health i \n1000"
-var score_mult_text = "health i \n2000"
+var score_mult_text = "score multiplier i \n2000"
 
 func _ready():
 	var root = get_tree().root
