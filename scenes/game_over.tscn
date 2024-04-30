@@ -62,6 +62,7 @@ offset_left = 208.0
 offset_top = 581.0
 offset_right = 490.0
 offset_bottom = 645.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("3_45vcb")
 theme_override_font_sizes/font_size = 30
 text = "Exit to menu"

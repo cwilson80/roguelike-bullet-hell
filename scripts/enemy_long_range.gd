@@ -5,6 +5,7 @@ var start_pos = Vector2.ZERO
 var speed = 80
 var viewport_size = Vector2(720, 960)
 var dead = false
+var can_shoot = true
 
 #load bullet scene
 var bullet_scene = preload("uid://qoddbhglyuap")
@@ -52,21 +53,25 @@ func _process(delta):
 
 
 func _on_shoot_cd_timeout():
-	var bullet = bullet_scene.instantiate()
-	bullet.speed = 600
-	get_tree().root.add_child(bullet)
-	bullet.start(position + Vector2(0, 15), Vector2(0, 1))
-	
-	var secondary_bullet = bullet_scene.instantiate()
-	secondary_bullet.speed = 500
-	get_tree().root.add_child(secondary_bullet)
-	secondary_bullet.start(position + Vector2(0, 15), Vector2(0, 1))
-	
-	$ShootCD.wait_time = randf_range(3, 5)
-	$ShootCD.start()
+	if(can_shoot):
+		var bullet = bullet_scene.instantiate()
+		bullet.speed = 600
+		get_tree().root.add_child(bullet)
+		bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+		
+		var secondary_bullet = bullet_scene.instantiate()
+		secondary_bullet.speed = 500
+		get_tree().root.add_child(secondary_bullet)
+		secondary_bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+		
+		$ShootCD.wait_time = randf_range(3, 5)
+		$ShootCD.start()
 
 
 func explode():
+	can_shoot = false
+	$HitDetection/CollisionShape2D.set_deferred("disabled", true)
+	dead = true
 	speed = 0
 	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()

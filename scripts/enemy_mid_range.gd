@@ -5,6 +5,7 @@ var start_pos = Vector2.ZERO
 var speed = 100
 var viewport_size = Vector2(720, 960)
 var dead = false
+var can_shoot = true
 
 
 #load bullet scene
@@ -54,21 +55,22 @@ func _process(delta):
 
 
 func _on_shoot_cd_timeout():
-	var bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(bullet)
-	bullet.start(position + Vector2(0, 15), Vector2(0, 1))
-	
-	var angle_degrees = 80
-	var angle_radians = deg_to_rad(angle_degrees)
-	var right_side_bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(right_side_bullet)
-	right_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians), sin(angle_radians)).normalized())	
-	
-	var angle_degrees_left = 100
-	var angle_radians_left = deg_to_rad(angle_degrees_left)
-	var left_side_bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(left_side_bullet)
-	left_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians_left), sin(angle_radians_left)).normalized())
+	if(can_shoot):
+		var bullet = bullet_scene.instantiate()
+		get_tree().root.add_child(bullet)
+		bullet.start(position + Vector2(0, 15), Vector2(0, 1))
+		
+		var angle_degrees = 80
+		var angle_radians = deg_to_rad(angle_degrees)
+		var right_side_bullet = bullet_scene.instantiate()
+		get_tree().root.add_child(right_side_bullet)
+		right_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians), sin(angle_radians)).normalized())	
+		
+		var angle_degrees_left = 100
+		var angle_radians_left = deg_to_rad(angle_degrees_left)
+		var left_side_bullet = bullet_scene.instantiate()
+		get_tree().root.add_child(left_side_bullet)
+		left_side_bullet.start(position + Vector2(0, 15), Vector2(cos(angle_radians_left), sin(angle_radians_left)).normalized())
 
 
 	$ShootCD.wait_time = 4
@@ -76,12 +78,14 @@ func _on_shoot_cd_timeout():
 
 
 func explode():
+	can_shoot = false
+	$HitDetection/CollisionShape2D.set_deferred("disabled", true)
+	dead = true
 	speed = 0
 	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()
 	set_deferred("monitoring", false)
 	died.emit(10)
-	dead = true
 	await $AnimatedSprite2D.animation_finished
 	queue_free()
 

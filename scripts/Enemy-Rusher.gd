@@ -36,12 +36,13 @@ func _process(delta):
 
 
 func explode():
+	$HitDetection/CollisionShape2D.set_deferred("disabled", true)
+	dead = true
 	speed = 0
 	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()
 	set_deferred("monitoring", false)
 	died.emit(5)
-	dead = true
 	await $AnimatedSprite2D.animation_finished
 	queue_free()
 

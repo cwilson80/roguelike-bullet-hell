@@ -73,7 +73,7 @@ func spawn_mid():
 
 #function for spawning long range enemies
 func spawn_long():
-	var base_spawn_rate = 1  # Adjust as needed
+	var base_spawn_rate = 2  # Adjust as needed
 	var initial_level_threshold = 15
 	var steepness_factor = 0.1  # Adjust as needed
 
