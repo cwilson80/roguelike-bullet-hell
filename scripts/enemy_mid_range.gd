@@ -80,7 +80,7 @@ func explode():
 	$AnimatedSprite2D.play("death")
 	$AudioStreamPlayer2D.play()
 	set_deferred("monitoring", false)
-	died.emit(5)
+	died.emit(10)
 	dead = true
 	await $AnimatedSprite2D.animation_finished
 	queue_free()
