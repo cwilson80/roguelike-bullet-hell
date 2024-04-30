@@ -37,6 +37,8 @@ func _process(_delta):
 	# Can only dash, slow, or move at a time
 	if Input.is_action_just_pressed("dash") and can_dash and not slow: # Dash movement
 		if(direction):
+			$CollisionShape2D.disabled = true
+			modulate.a = 0.25
 			$AudioStreamPlayer2D2.play()
 			dashing = true
 			can_dash = false
@@ -45,6 +47,9 @@ func _process(_delta):
 			$Timers/DashCooldown.wait_time = dash_cooldown
 			$Timers/DashCooldown.start()
 			velocity = direction * dash_speed
+			await get_tree().create_timer(0.25).timeout 
+			$CollisionShape2D.disabled = false
+			modulate.a = 1
 	
 	elif Input.is_action_just_pressed("slow") and not dashing: # Start slow movement
 		slow = true
@@ -108,15 +113,20 @@ func _on_dash_cooldown_timeout():
 
 func hit():
 	if !invulnerable:
+		modulate.a = 0.5
 		$AudioStreamPlayer2D4.play()
 		invulnerable = true
 		$Timers/InvulnerabilityTimer.start()
 		health -= 1
 		levelInfo.health = health
 		get_node("../HUD/VBoxContainer/HealthText").text = "HP: " + str(health)
-		if health <= 0:
-			explode()
 		hurt_flash()
+		if health <= 0:
+			modulate.a = 1
+			explode()
+		else:
+			await get_tree().create_timer(2).timeout 
+			modulate.a = 1
 
 func hurt_flash():
 	get_node("../DamageOverlay").show()
@@ -132,6 +142,8 @@ func restart():
 
 func explode():
 	$Timers/InvulnerabilityTimer.start(5)
+	$HitDetection/CollisionShape2D/ColorRect.visible = false
+	$AnimatedSprite2D.modulate = Color(1, 1, 1, 1)
 	dead = true
 	can_shoot = false
 	dashing = true
