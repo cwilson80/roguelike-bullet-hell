@@ -24,10 +24,6 @@ func _ready():
 	current_health_text = levelInfo.health_text
 	current_score_mult_text = levelInfo.score_mult_text
 	
-	print(levelInfo.health_text)
-	print(levelInfo.fire_rate_text)
-	print(levelInfo.score_mult_text)
-	
 	$Labels/ShopTitle1/AnimationPlayer.play("TextCreateSub")
 	$Labels/ShopTitle2/AnimationPlayer.play("TextCreateMain")
 	$BackgroundShop/AnimationPlayer.play("BackgroundSlide")
@@ -114,7 +110,7 @@ func _on_health_up_pressed():
 			levelInfo.health_text = "MAX"
 		current_health_count = levelInfo.health_count
 	elif(current_health_count != 3):
-		$Labels/ScoreMultLabel/AnimationPlayer.play("RESET")
+		$Labels/HealthLabel/AnimationPlayer.play("RESET")
 		$Labels/HealthLabel/AnimationPlayer.play("NotEnough")
 		not_enough_sound()
 	current_health_cost = levelInfo.health_cost
@@ -147,7 +143,7 @@ func _on_fire_rate_up_pressed():
 			levelInfo.fire_rate_text = "MAX"
 		current_fire_rate_count = levelInfo.fire_rate_count
 	elif(current_fire_rate_count != 3):
-		$Labels/ScoreMultLabel/AnimationPlayer.play("RESET")
+		$Labels/FireRateLabel/AnimationPlayer.play("RESET")
 		$Labels/FireRateLabel/AnimationPlayer.play("NotEnough")
 		not_enough_sound()
 	current_fire_rate_cost = levelInfo.fire_rate_cost
