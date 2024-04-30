@@ -93,7 +93,7 @@ func spawn_long():
 func calculate_enemies_to_spawn(base_spawn_rate, initial_level_threshold, steepness_factor):
 	if current_level <= initial_level_threshold:
 		# Slow increase for the initial levels
-		return base_spawn_rate * current_level
+		return (base_spawn_rate * current_level) - current_level
 	else:
 		# Ramp up more aggressively after the threshold
 		var adjusted_level = current_level - initial_level_threshold

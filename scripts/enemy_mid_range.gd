@@ -32,7 +32,7 @@ func start(pos):
 	speed = 0
 	$MoveTimer.wait_time = randf_range(3, 11)
 	$MoveTimer.start()
-	$ShootCD.wait_time = 11
+	$ShootCD.wait_time = randf_range(11, 15)
 	$ShootCD.start()
 
 

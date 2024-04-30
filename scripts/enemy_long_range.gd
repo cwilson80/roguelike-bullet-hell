@@ -62,7 +62,7 @@ func _on_shoot_cd_timeout():
 	get_tree().root.add_child(secondary_bullet)
 	secondary_bullet.start(position + Vector2(0, 15), Vector2(0, 1))
 	
-	$ShootCD.wait_time = 4
+	$ShootCD.wait_time = randf_range(3, 5)
 	$ShootCD.start()
 
 
