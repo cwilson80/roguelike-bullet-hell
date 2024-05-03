@@ -398,7 +398,8 @@ theme_override_font_sizes/font_size = 20
 text = "WASD to move
 space/lmb to shoot
 shift to dash
-ctrl to focus move"
+ctrl to focus move
+esc to pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
